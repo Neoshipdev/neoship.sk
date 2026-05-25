@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(npx tsc *)",
+      "WebFetch(domain:www.neoship.sk)",
+      "Bash(python -c \"import pypdf; print\\('pypdf ok'\\)\")",
+      "Bash(python -c \"import PyPDF2; print\\('PyPDF2 ok'\\)\")",
+      "Bash(pip install *)",
+      "Bash(node -e \"const fs=require\\('fs'\\);const pdf=require\\('pdf-parse'\\);pdf\\(fs.readFileSync\\('C:/Users/Lenka/.claude/projects/C--Users-Lenka-Desktop-neoship-web/a2463ac4-67ec-4194-8964-9136ad51bcdf/tool-results/webfetch-1779282974275-vsaz0o.pdf'\\)\\).then\\(d=>{fs.writeFileSync\\('vop-extracted.txt',d.text\\);console.log\\('pages',d.numpages,'chars',d.text.length\\);}\\).catch\\(e=>console.error\\('ERR',e.message\\)\\);\")",
+      "Bash(node -e \"const m=require\\('pdf-parse'\\);console.log\\('type',typeof m,'keys',Object.keys\\(m\\)\\);\")",
+      "Bash(node -e \"const {PDFParse}=require\\('pdf-parse'\\);const fs=require\\('fs'\\);\\(async\\(\\)=>{const p=new PDFParse\\({data:new Uint8Array\\(fs.readFileSync\\('C:/Users/Lenka/.claude/projects/C--Users-Lenka-Desktop-neoship-web/a2463ac4-67ec-4194-8964-9136ad51bcdf/tool-results/webfetch-1779282974275-vsaz0o.pdf'\\)\\)}\\);const r=await p.getText\\(\\);fs.writeFileSync\\('vop-extracted.txt',r.text\\);console.log\\('chars',r.text.length,'pages',r.total||r.pages?.length\\);}\\)\\(\\).catch\\(e=>console.error\\('ERR',e.message\\)\\);\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)",
+      "Bash(curl -s -o /dev/null -w \"dopravci.png: %{http_code}\\\\n\" http://localhost:3000/images/dopravci.png)",
+      "Bash(curl -s -o /dev/null -w \"kurierske-sluzby page: %{http_code}\\\\n\" http://localhost:3000/sluzby/kurierske-sluzby)",
+      "Bash(curl -s \"http://localhost:3000/sluzby/kurierske-sluzby\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" \"http://localhost:3000/_next/image?url=%2Fimages%2Fdopravci.png&w=640&q=75\")",
+      "Bash(curl -s -o /dev/null -w \"ebook.png: %{http_code} size=%{size_download}\\\\n\" http://localhost:3000/images/ebook.png)",
+      "Bash(curl -s -o /dev/null -w \"navody: %{http_code}\\\\n\" http://localhost:3000/navody)",
+      "Bash(curl -s -o /dev/null -w \"detail: %{http_code}\\\\n\" \"http://localhost:3000/navody/manual-nastavenie-packety-vydajnych-miest-v-shoptete\")",
+      "Bash(curl -s -o /dev/null -w \"detail: %{http_code}\\\\n\" \"http://localhost:3000/navody/dashboard\")",
+      "Bash(curl -s -o /dev/null -w \"image: %{http_code}\\\\n\" \"http://localhost:3000/images/navody/Dashboard.png\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" -o \"public/images/navody/steps/_test.png\" \"https://www.neoship.sk/thumbs/1000%C3%971000%C3%97max/1prepojenie-Packeta.png\")",
+      "Bash(git config *)",
+      "Bash(git add *)",
+      "Bash(git -c user.name=Neoshipdev -c user.email=lenka.falatova@neoship.sk commit -m ' *)"
+    ]
+  }
+}
