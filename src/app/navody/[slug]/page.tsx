@@ -140,14 +140,17 @@ export default function Page({ params }: Props) {
               <h2 className="text-xl md:text-2xl font-bold text-ink mb-5">Postup v obrázkoch</h2>
               <div className="space-y-5">
                 {navod.gallery.map((src, i) => (
-                  <figure key={src} className="rounded-2xl border border-line overflow-hidden bg-surface">
+                  <figure
+                    key={src}
+                    className="rounded-2xl border border-line bg-surface p-3 flex justify-center"
+                  >
                     <Image
                       src={src}
                       alt={`${navod.title} – krok ${i + 1}`}
                       width={1000}
                       height={1000}
                       unoptimized
-                      className="w-full h-auto"
+                      className="w-auto h-auto max-w-full rounded-xl"
                     />
                   </figure>
                 ))}

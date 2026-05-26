@@ -94,6 +94,7 @@ export default function Page() {
         eyebrow="Cenník"
         title="Transparentné ceny bez prekvapení"
         subtitle="Platíte len za to, čo využijete. Nižšie nájdete jednotlivé položky cenníka a porovnanie verzií Prémium a Základ."
+        variant="dark"
       />
 
       {/* Jednotlivé položky cenníka */}

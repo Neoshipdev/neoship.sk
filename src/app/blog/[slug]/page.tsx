@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Calendar, ArrowLeft, ExternalLink } from 'lucide-react';
+import { Calendar, ArrowLeft } from 'lucide-react';
 import { Container } from '@/components/layout/Container';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { CTABanner } from '@/components/sections/CTABanner';
@@ -10,6 +10,64 @@ import { buildMetadata } from '@/lib/seo';
 import { blogPosts, getBlogPost } from '@/lib/blog';
 
 type Props = { params: { slug: string } };
+
+type Block =
+  | { type: 'h2'; text: string }
+  | { type: 'h3'; text: string }
+  | { type: 'p'; text: string }
+  | { type: 'ul'; items: string[] }
+  | { type: 'quote'; text: string }
+  | { type: 'img'; src: string; alt: string };
+
+/**
+ * Konvencie pre body string:
+ *  - "## " na začiatku odseku       -> h2
+ *  - "### " na začiatku odseku      -> h3
+ *  - "> " na začiatku odseku        -> blockquote
+ *  - každý riadok odseku "• "/"- "  -> <ul>
+ *  - "![alt](path)" (samostatný odsek) -> obrázok
+ *  - inak                            -> <p>
+ */
+function parseBody(body: string): Block[] {
+  const blocks: Block[] = [];
+  const IMG_RE = /^!\[([^\]]*)\]\(([^)]+)\)$/;
+
+  for (const raw of body.split(/\n{2,}/)) {
+    const para = raw.trim();
+    if (!para) continue;
+
+    const imgMatch = para.match(IMG_RE);
+    if (imgMatch) {
+      blocks.push({ type: 'img', alt: imgMatch[1].trim(), src: imgMatch[2].trim() });
+      continue;
+    }
+
+    if (para.startsWith('## ')) {
+      blocks.push({ type: 'h2', text: para.slice(3).trim() });
+      continue;
+    }
+    if (para.startsWith('### ')) {
+      blocks.push({ type: 'h3', text: para.slice(4).trim() });
+      continue;
+    }
+    if (para.startsWith('> ')) {
+      blocks.push({ type: 'quote', text: para.slice(2).trim() });
+      continue;
+    }
+
+    const lines = para.split('\n').map((l) => l.trim()).filter(Boolean);
+    if (lines.length > 0 && lines.every((l) => /^[•\-]\s+/.test(l))) {
+      blocks.push({
+        type: 'ul',
+        items: lines.map((l) => l.replace(/^[•\-]\s+/, '').trim()),
+      });
+      continue;
+    }
+
+    blocks.push({ type: 'p', text: para });
+  }
+  return blocks;
+}
 
 export function generateStaticParams() {
   return blogPosts.map((p) => ({ slug: p.slug }));
@@ -70,34 +128,87 @@ export default function Page({ params }: Props) {
             />
           )}
 
+          {post.video && (
+            <div className="mt-8 rounded-2xl overflow-hidden border border-line shadow-soft bg-ink">
+              <div className="relative aspect-video">
+                <iframe
+                  src={post.video}
+                  title={post.title}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full"
+                />
+              </div>
+            </div>
+          )}
+
           <p className="mt-8 text-lg font-medium text-ink/90 leading-relaxed">{post.excerpt}</p>
 
           <div className="mt-8 prose prose-lg max-w-none text-ink leading-relaxed">
-            {post.body.split('\n\n').map((para, i) => (
-              <p key={i} className="text-lg leading-[1.75] text-ink/90 mb-5">
-                {para}
-              </p>
-            ))}
-          </div>
-
-          {post.sourceUrl && (
-            <div className="mt-10 rounded-2xl bg-surface border border-line p-6 md:p-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <div>
-                <p className="text-sm font-bold text-ink">Celý článok na neoship.sk</p>
-                <p className="text-sm text-muted mt-1">
-                  Plné znenie pôvodného článku nájdete na zdrojovej stránke.
+            {parseBody(post.body).map((block, i) => {
+              if (block.type === 'h2') {
+                return (
+                  <h2
+                    key={i}
+                    className="mt-10 mb-4 text-2xl md:text-3xl font-black tracking-tight text-ink"
+                  >
+                    {block.text}
+                  </h2>
+                );
+              }
+              if (block.type === 'h3') {
+                return (
+                  <h3 key={i} className="mt-8 mb-3 text-xl md:text-2xl font-bold text-ink">
+                    {block.text}
+                  </h3>
+                );
+              }
+              if (block.type === 'ul') {
+                return (
+                  <ul key={i} className="my-5 space-y-2 list-disc pl-6 marker:text-brand-orange">
+                    {block.items.map((it, j) => (
+                      <li key={j} className="text-lg leading-[1.7] text-ink/90">
+                        {it}
+                      </li>
+                    ))}
+                  </ul>
+                );
+              }
+              if (block.type === 'quote') {
+                return (
+                  <blockquote
+                    key={i}
+                    className="my-6 border-l-4 border-brand-orange bg-surface px-5 py-4 rounded-r-xl text-lg italic text-ink/80"
+                  >
+                    {block.text}
+                  </blockquote>
+                );
+              }
+              if (block.type === 'img') {
+                return (
+                  <figure
+                    key={i}
+                    className="my-8 rounded-2xl border border-line bg-surface p-3 flex justify-center"
+                  >
+                    <Image
+                      src={block.src}
+                      alt={block.alt || post.title}
+                      width={1000}
+                      height={1000}
+                      unoptimized
+                      className="w-auto h-auto max-w-full rounded-xl"
+                    />
+                  </figure>
+                );
+              }
+              return (
+                <p key={i} className="text-lg leading-[1.75] text-ink/90 mb-5">
+                  {block.text}
                 </p>
-              </div>
-              <a
-                href={post.sourceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-brand-orange text-white px-5 py-2.5 text-sm font-bold hover:bg-brand-orange-600 transition-colors whitespace-nowrap"
-              >
-                Čítať pôvodný článok <ExternalLink className="w-4 h-4" />
-              </a>
-            </div>
-          )}
+              );
+            })}
+          </div>
 
           <div className="mt-12 pt-8 border-t border-line">
             <Link

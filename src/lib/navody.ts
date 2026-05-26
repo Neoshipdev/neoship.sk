@@ -1168,20 +1168,46 @@ const navodyData: Omit<Navod, 'image' | 'gallery'>[] = [
     title: 'Párovanie dobierok s faktúrami v MoneyS3',
     category: 'Párovanie dobierok',
     perex:
-      'Aj e-shopy vystavujúce faktúry v MoneyS3 môžu vďaka SEPA XML súboru napárovať dobierky k faktúram hromadne.',
+      'Aj eshopy vystavujúce faktúry v MoneyS3 môžu vďaka SEPA XML súboru napárovať dobierky k faktúram hromadne. Náš manuál vám ukáže, ako na to.',
     blocks: [
       {
-        type: 'steps',
-        title: 'Export z Neoshipu',
-        items: [
-          'Prejdite do „Zoznam vyplatených dobierok“ v ľavom menu.',
-          'Zadajte variabilný symbol (VS) z bankového výpisu; voliteľne filtrujte podľa dátumu platby.',
-          'Vyberte možnosť „Exportovať SEPA“.',
-        ],
+        type: 'heading',
+        text: 'Export súborov s dobierkami v Neoshipe',
       },
       {
         type: 'text',
-        text: 'Import SEPA XML súboru a párovanie dobierok k faktúram dokončíte v MoneyS3 podľa dokumentácie MoneyS3.',
+        text: 'V Neoshipe si v ľavom menu vyberiete Zoznam vyplatených dobierok:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1663141359_Zoznam-vyplatenych-dobierok.png',
+        alt: 'Zoznam vyplatených dobierok v ľavom menu Neoshipu',
+      },
+      {
+        type: 'text',
+        text: 'Následne si do poľa VS platby (= VS, pod ktorým vám boli na účet vyplatené dobierky) zadáte VS, ktorý vidíte na bankovom výpise. Môžete taktiež zvoliť dátum platby. Veľmi jednoduché je tiež dohľadanie dobierok cez filter platba na účte. V zozname sa vyfiltrujú všetky vyplatené dobierky pod daným variabilným symbolom, resp. v hromadnej platbe:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1663141398_Filter-vyplatenych-dobierok.png',
+        alt: 'Filter vyplatených dobierok podľa variabilného symbolu',
+      },
+      {
+        type: 'text',
+        text: 'Následne si v EXPORTE vyberiete možnosť Exportovať SEPA:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1663141437_sepa-xml.png',
+        alt: 'Export SEPA XML súboru z Neoshipu',
+      },
+      {
+        type: 'heading',
+        text: 'Import SEPA XML súboru do MoneyS3 a párovanie dobierok',
+      },
+      {
+        type: 'text',
+        text: 'Celý popis, ako importovať SEPA XML súbor do účtovného programu MoneyS3 a napárovať dobierky k faktúram, nájdete na webe MoneyS3: https://www.money.sk/navod/import-vypisov-a-export-platobnych-prikazov/',
       },
     ],
   },
@@ -1190,30 +1216,82 @@ const navodyData: Omit<Navod, 'image' | 'gallery'>[] = [
     title: 'Párovanie dobierok s faktúrami v SuperFaktúre',
     category: 'Párovanie dobierok',
     perex:
-      'Zákazníci Neoshipu majú v expedičnom systéme k dispozícii zoznam vyplatených dobierok. Pre párovanie dobierok s faktúrami je možné tieto dáta exportovať v rôznych formátoch.',
+      'Zákazníci Neoshipu majú v expedičnom systéme k dispozícii aj zoznam vyplatených dobierok. Pre účely párovania dobierok s faktúrami je možné exportovať tieto dáta v rôznych formátoch. V tomto prípade budeme potrebovať CSV súbor.',
     blocks: [
       {
-        type: 'steps',
-        title: 'Export z Neoshipu',
-        items: [
-          'V ľavom menu vyberte Zoznam vyplatených dobierok.',
-          'Zadajte VS platby z bankového výpisu a vyberte dátum platby.',
-          'V Exporte zvoľte možnosť Exportovať CSV.',
-        ],
-      },
-      {
-        type: 'steps',
-        title: 'Import do SuperFaktúry',
-        items: [
-          'V administrácii SuperFaktúry prejdite na Nástroje → Platby.',
-          'Vyberte možnosť importovať výpis.',
-          'Z ponúkaných možností zvoľte Neoship.',
-          'Vložte CSV súbor stiahnutý z Neoshipu.',
-        ],
+        type: 'heading',
+        text: 'Export súborov s dobierkami v Neoshipe',
       },
       {
         type: 'text',
-        text: 'Hoci boli dobierky vyplatené hromadne pod jedným variabilným symbolom, systém automaticky napáruje konkrétnu dobierku na správnu faktúru.',
+        text: 'V Neoshipe si v ľavom menu vyberiete Zoznam vyplatených dobierok:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1663141359_Zoznam-vyplatenych-dobierok.png',
+        alt: 'Zoznam vyplatených dobierok v ľavom menu Neoshipu',
+      },
+      {
+        type: 'text',
+        text: 'Následne si do poľa VS platby (= VS, pod ktorým vám boli na účet vyplatené dobierky) zadáte VS, ktorý vidíte na bankovom výpise. Môžete taktiež zvoliť dátum platby. Veľmi jednoduché je tiež dohľadanie dobierok cez filter platba na účte. V zozname sa vyfiltrujú všetky vyplatené dobierky pod daným variabilným symbolom, resp. v hromadnej platbe:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1663141398_Filter-vyplatenych-dobierok.png',
+        alt: 'Filter vyplatených dobierok podľa variabilného symbolu',
+      },
+      {
+        type: 'text',
+        text: 'Následne si v EXPORTE vyberiete možnosť Exportovať CSV:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1663141437_sepa-xml.png',
+        alt: 'Voľba exportu CSV súboru v Neoshipe',
+      },
+      {
+        type: 'heading',
+        text: 'Import CSV súboru do SuperFaktúry a párovanie dobierok',
+      },
+      {
+        type: 'text',
+        text: 'V administrácii SuperFaktúry v časti Nástroje si vyberiete Platby:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Nastroje-platby-v-SuperFakture.png',
+        alt: 'Sekcia Nástroje → Platby v SuperFaktúre',
+      },
+      {
+        type: 'text',
+        text: 'Následne si vyberiete možnosť importovať výpis:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Importovanie-vypisu.png',
+        alt: 'Možnosť Importovanie výpisu v SuperFaktúre',
+      },
+      {
+        type: 'text',
+        text: 'Z možností vyberiete Neoship:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Neoship-vypis.png',
+        alt: 'Výber poskytovateľa Neoship v importe SuperFaktúry',
+      },
+      {
+        type: 'text',
+        text: 'Vložíte CSV súbor, ktorý ste si stiahli z Neoshipu:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/CSV-subor-v-SuperFakture.png',
+        alt: 'Nahranie CSV súboru z Neoshipu do SuperFaktúry',
+      },
+      {
+        type: 'text',
+        text: 'Hoci dobierky boli vyplatené hromadne a pod jedným VS, v SuperFaktúre sa týmto spôsobom dobierka za konkrétny balík napáruje na správnu faktúru.',
       },
     ],
   },
@@ -1222,26 +1300,88 @@ const navodyData: Omit<Navod, 'image' | 'gallery'>[] = [
     title: 'Párovanie dobierok s faktúrami v Omege',
     category: 'Párovanie dobierok',
     perex:
-      'Zákazníci Neoshipu môžu exportovať dáta o vyplatených dobierkach v rôznych formátoch. Fakturačný systém Omega umožňuje hromadné párovanie dobierok s faktúrami cez SEPA XML.',
+      'Zákazníci Neoshipu majú v expedičnom systéme k dispozícii aj zoznam vyplatených dobierok. Pre účely párovania dobierok s faktúrami je možné exportovať tieto dáta v rôznych formátoch. Vo fakturačnom systéme OMEGA je možné párovať dobierky s faktúrami hromadne prostredníctvom SEPA XML.',
     blocks: [
       {
-        type: 'steps',
-        title: 'Export v Neoshipe',
-        items: [
-          'Prejdite do „Zoznam vyplatených dobierok“ v ľavom menu.',
-          'Zadajte variabilný symbol (VS) do poľa „VS platby“, prípadne použite filter „platba na účte“.',
-          'Vyberte „Exportovať SEPA“ a vygenerujte súbor pre párovanie v Omege.',
-        ],
+        type: 'heading',
+        text: 'Export súborov s dobierkami v Neoshipe',
       },
       {
-        type: 'steps',
-        title: 'Import v Omege',
-        items: [
-          'Importujte SEPA XML súbor v „knihe účet v banke“ cez „import BV“.',
-          'Vyberte formát SEPA XML a nahrajte stiahnutý súbor.',
-          'Odstráňte záznam hromadnej platby z importovaného súboru.',
-          'Skontrolujte transakcie účtu a zostatok.',
-        ],
+        type: 'text',
+        text: 'V Neoshipe si v ľavom menu vyberiete Zoznam vyplatených dobierok:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Zoznam-vyplatenych-dobierok.png',
+        alt: 'Zoznam vyplatených dobierok v ľavom menu Neoshipu',
+      },
+      {
+        type: 'text',
+        text: 'Následne si do poľa VS platby (= VS, pod ktorým vám boli na účet vyplatené dobierky) zadáte VS, ktorý vidíte na výpise. Veľmi jednoduché je tiež dohľadanie dobierok cez filter platba na účte. V zozname sa vyfiltrujú všetky vyplatené dobierky pod daným variabilným symbolom, resp. v hromadnej platbe:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Filter-vyplatenych-dobierok.png',
+        alt: 'Filter vyplatených dobierok podľa variabilného symbolu',
+      },
+      {
+        type: 'text',
+        text: 'Následne si v EXPORTE vyberiete možnosť Exportovať SEPA, na základe ktorého budete môcť platby s faktúrami v OMEGE párovať automatizovane:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/sepa-xml.png',
+        alt: 'Voľba exportu SEPA XML súboru v Neoshipe',
+      },
+      {
+        type: 'heading',
+        text: 'Import SEPA XML v Omege a párovanie dobierok',
+      },
+      {
+        type: 'text',
+        text: 'SEPA XML súbor naimportujete v evidencii do kniha účet v banke cez import BV:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Omega1.png',
+        alt: 'Import bankového výpisu v knihe účet v banke – Omega',
+      },
+      {
+        type: 'text',
+        text: 'Z možností vyberiete SEPA XML a vložíte súbor, ktorý ste si stiahli z Neoshipu:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Omega2.png',
+        alt: 'Výber formátu SEPA XML pri importe v Omege – krok 1',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Omega3.png',
+        alt: 'Nahranie SEPA XML súboru v Omege – krok 2',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Omega4.png',
+        alt: 'Spracovanie importovaných platieb v Omege – krok 3',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Omega5.png',
+        alt: 'Prehľad importovaných platieb v Omege – krok 4',
+      },
+      {
+        type: 'text',
+        text: 'Na záver je potrebné urobiť ešte jednu zásadnú vec: Naimportovaný SEPA XML súbor obsahuje aj samotnú hromadnú platbu, ktorú je potrebné vymazať. Po jej vymazaní stačí už len skontrolovať obraty a zostatok bankového výpisu:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Omega6.png',
+        alt: 'Kontrola bankového výpisu po vymazaní hromadnej platby v Omege',
+      },
+      {
+        type: 'text',
+        text: 'Takýmto spôsobom môžete veľmi jednoducho napárovať dobierky (hoci vám na účet prišli v hromadnej platbe) s vystavenými faktúrami.',
       },
     ],
   },
@@ -1250,28 +1390,122 @@ const navodyData: Omit<Navod, 'image' | 'gallery'>[] = [
     title: 'Párovanie dobierok s faktúrami v POHODE',
     category: 'Párovanie dobierok',
     perex:
-      'Ako jednoducho párovať vyplatené dobierky s faktúrami v POHODE? Neoship ponúka export dobierok vo formáte SEPA XML, ktorý nahráte do POHODY a dobierky sa hromadne spárujú s vystavenými faktúrami.',
+      'Ako jednoducho párovať vyplatené dobierky s faktúrami v POHODE? Neoship ponúka možnosť exportu dobierok vo formáte SEPA XML, ktorý podľa nášho manuálu nahráte do POHODY a dobierky sa hromadne spárujú s vystavenými faktúrami.',
     blocks: [
       {
-        type: 'steps',
-        title: 'Export v Neoshipe',
-        items: [
-          'V menu vyberte Zoznam vyplatených dobierok.',
-          'Zadajte variabilný symbol (VS) z účtovného výpisu a zvoľte dátum platby.',
-          'V sekcii EXPORT vyberte možnosť „Exportovať SEPA“.',
-        ],
+        type: 'text',
+        text: 'Zákazníci Neoshipu majú v expedičnom systéme k dispozícii aj zoznam vyplatených dobierok. Pre účely párovania dobierok s faktúrami je možné exportovať tieto dáta v rôznych formátoch. Vo fakturačnom systéme POHODA je možné párovať dobierky s faktúrami hromadne prostredníctvom SEPA XML.',
       },
       {
-        type: 'steps',
-        title: 'Import a párovanie v POHODE',
-        items: [
-          'Pred importom nastavte agendu HOMEBANKING a zapnite SEPA XML.',
-          'V Bankových účtoch vyberte elektronický platobný styk.',
-          'V agende Banka vyberte Načítanie výpisov a zvoľte bankovú službu/účty.',
-          'Aktivujte voľbu „Aut. likvidácia“ pre automatické spárovanie.',
-          'Vyberte stiahnutý SEPA XML súbor z Neoshipu.',
-          'Skontrolujte súbory na poslednej stránke sprievodcu a potvrďte import.',
-        ],
+        type: 'heading',
+        text: 'Export súborov s dobierkami v Neoshipe',
+      },
+      {
+        type: 'text',
+        text: 'V Neoshipe si v ľavom menu vyberiete Zoznam vyplatených dobierok:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1662726804_Zoznam-vyplatenych-dobierok.png',
+        alt: 'Zoznam vyplatených dobierok v ľavom menu Neoshipu',
+      },
+      {
+        type: 'text',
+        text: 'Následne si do poľa VS platby (= VS, pod ktorým vám boli na účet vyplatené dobierky) zadáte VS, ktorý vidíte na výpise. Môžete taktiež zvoliť dátum platby. Veľmi jednoduché je tiež dohľadanie dobierok cez filter platba na účte. V zozname sa vyfiltrujú všetky vyplatené dobierky pod daným variabilným symbolom, resp. v hromadnej platbe:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1662726850_Filter-vyplatenych-dobierok.png',
+        alt: 'Filter vyplatených dobierok podľa variabilného symbolu',
+      },
+      {
+        type: 'text',
+        text: 'Následne si v EXPORTE vyberiete možnosť Exportovať SEPA, na základe ktorého budete môcť platby s faktúrami v POHODE párovať automatizovane:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1662726882_sepa-xml.png',
+        alt: 'Voľba exportu SEPA XML súboru v Neoshipe',
+      },
+      {
+        type: 'heading',
+        text: 'Import SEPA XML v POHODE a párovanie dobierok',
+      },
+      {
+        type: 'text',
+        text: 'Ešte pred samotným importom je potrebné urobiť úvodné nastavenia v POHODE v agende HOMEBANKING.',
+      },
+      {
+        type: 'text',
+        text: 'Prvým nevyhnutným krokom je priradenie založenej služby v agende Homebanking bankovému účtu v agende Bankové účty. Potom bude možné načítať do agendy Banka výpisy z účtov vrátane automatického spárovania. V agende HOMEBANKING je možné vyplniť nasledujúce položky:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Jednotlive-polozky-v-Homebankingu.png',
+        alt: 'Jednotlivé položky v agende Homebanking v POHODE',
+      },
+      {
+        type: 'text',
+        text: 'Pre účely hromadného párovania dobierok s faktúrami je nevyhnutné zapnúť možnosť SEPA XML:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/SEPA-XML-v-POHODE.png',
+        alt: 'Zapnutie možnosti SEPA XML v POHODE',
+      },
+      {
+        type: 'text',
+        text: 'V agende Bankové účty v poli Homebanking zvoľte službu elektronického platobného styku:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/agenda-bankove-ucty.png',
+        alt: 'Agenda Bankové účty s nastavením homebankingovej služby',
+      },
+      {
+        type: 'text',
+        text: 'V agende Banka zvoľte Načítanie výpisov z ponuky Záznam. Na prvej stránke Sprievodcu importom bankových výpisov vyberte služby alebo účty, pre ktoré chcete spraviť import:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Sprievodca-importom-bankovych-vypisov.png',
+        alt: 'Sprievodca importom bankových výpisov v POHODE – výber služieb',
+      },
+      {
+        type: 'text',
+        text: 'Ak bude voľba Aut. likvidácia zapnutá, POHODA sa vždy automaticky pokúsi o spárovanie pohľadávok a záväzkov. Na ďalšej strane pri aktivovanej voľbe Výber podľa účtov vyberte bankové účty, v opačnom prípade vyberte homebankingovú službu, pre ktorú chcete spraviť import:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Vyber-podla-uctov.png',
+        alt: 'Výber bankových účtov alebo homebankingovej služby pri importe',
+      },
+      {
+        type: 'text',
+        text: 'Na nasledujúcej stránke sprievodcu vyberte SEPA XML súbor, ktorý ste si stiahli z Neoshipu. Stlačte tlačidlo Ďalej. V dialógovom okne sú zobrazené všetky súbory vzťahujúce sa k príslušnej službe a nachádzajúce sa v adresári, ktorý ste uviedli v agende Homebanking:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Konkretny-SEPA-XML-subor.png',
+        alt: 'Výber konkrétneho SEPA XML súboru stiahnutého z Neoshipu',
+      },
+      {
+        type: 'text',
+        text: 'Na tretej stránke sprievodcu sa kvôli kontrole ešte raz zobrazia súbory, ktoré budú naimportované. Svoj výber potvrďte opäť tlačidlom Ďalej. Keď prebehne import jednotlivých bankových výpisov, na poslednej stránke sprievodcu môžete zistiť výsledky importu a automatickej likvidácie:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Kontrola-importovanych-suborov.png',
+        alt: 'Kontrola importovaných súborov a výsledok automatickej likvidácie',
+      },
+      {
+        type: 'text',
+        text: 'V agende Banka sa objavia nové riadky naimportované z bankových výpisov. Program sa pokúsi zlikvidovať jednotlivé pohľadávky a záväzky, ktoré sa potom objavia na záložke Likvidácia pri príslušnom bankovom doklade:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Banka.png',
+        alt: 'Agenda Banka s naimportovanými riadkami a záložkou Likvidácia',
       },
     ],
   },
@@ -1318,44 +1552,6 @@ const NAVOD_IMAGE: Record<string, string> = {
 
 /** Snímky obrazovky použité v jednotlivých návodoch (z neoship.sk), v poradí. */
 const NAVOD_GALLERY: Record<string, string[]> = {
-  'parovanie-dobierok-s-fakturami-v-moneys3': [
-    '1663141359_Zoznam-vyplatenych-dobierok.png',
-    '1663141398_Filter-vyplatenych-dobierok.png',
-    '1663141437_sepa-xml.png',
-  ],
-  'parovanie-dobierok-s-fakturami-v-superfakture': [
-    '1663141359_Zoznam-vyplatenych-dobierok.png',
-    '1663141398_Filter-vyplatenych-dobierok.png',
-    '1663141437_sepa-xml.png',
-    'Nastroje-platby-v-SuperFakture.png',
-    'Importovanie-vypisu.png',
-    'Neoship-vypis.png',
-    'CSV-subor-v-SuperFakture.png',
-  ],
-  'parovanie-dobierok-s-fakturami-v-omege': [
-    'Zoznam-vyplatenych-dobierok.png',
-    'Filter-vyplatenych-dobierok.png',
-    'sepa-xml.png',
-    'Omega1.png',
-    'Omega2.png',
-    'Omega3.png',
-    'Omega4.png',
-    'Omega5.png',
-    'Omega6.png',
-  ],
-  'parovanie-dobierok-s-fakturami-v-pohode': [
-    '1662726804_Zoznam-vyplatenych-dobierok.png',
-    '1662726850_Filter-vyplatenych-dobierok.png',
-    '1662726882_sepa-xml.png',
-    'Jednotlive-polozky-v-Homebankingu.png',
-    'SEPA-XML-v-POHODE.png',
-    'agenda-bankove-ucty.png',
-    'Sprievodca-importom-bankovych-vypisov.png',
-    'Vyber-podla-uctov.png',
-    'Konkretny-SEPA-XML-subor.png',
-    'Kontrola-importovanych-suborov.png',
-    'Banka.png',
-  ],
 };
 
 export const navody: Navod[] = navodyData.map((n) => ({

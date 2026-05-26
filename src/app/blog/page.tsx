@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Calendar } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Calendar } from 'lucide-react';
 import { Container } from '@/components/layout/Container';
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { PageHero } from '@/components/sections/PageHero';
@@ -16,7 +16,22 @@ export const metadata: Metadata = buildMetadata({
   path: '/blog',
 });
 
-export default function Page() {
+const PAGE_SIZE = 12;
+
+type Props = {
+  searchParams?: { page?: string };
+};
+
+export default function Page({ searchParams }: Props) {
+  const totalPages = Math.max(1, Math.ceil(blogPostsSorted.length / PAGE_SIZE));
+  const requested = Number.parseInt(searchParams?.page ?? '1', 10);
+  const currentPage = Number.isFinite(requested)
+    ? Math.min(Math.max(1, requested), totalPages)
+    : 1;
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const visible = blogPostsSorted.slice(start, start + PAGE_SIZE);
+  const pageHref = (n: number) => (n === 1 ? '/blog' : `/blog?page=${n}`);
+
   return (
     <>
       <Breadcrumbs items={[{ label: 'Domov', href: '/' }, { label: 'Blog', href: '/blog' }]} />
@@ -30,7 +45,7 @@ export default function Page() {
       <section className="py-16 md:py-20 bg-white">
         <Container>
           <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogPostsSorted.map((p) => (
+            {visible.map((p) => (
               <li key={p.slug}>
                 <Link
                   href={`/blog/${p.slug}`}
@@ -79,6 +94,68 @@ export default function Page() {
               </li>
             ))}
           </ul>
+
+          {totalPages > 1 && (
+            <nav
+              aria-label="Stránkovanie blogu"
+              className="mt-12 flex flex-wrap items-center justify-center gap-2"
+            >
+              {currentPage > 1 ? (
+                <Link
+                  href={pageHref(currentPage - 1)}
+                  rel="prev"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-4 py-2 text-sm font-bold text-ink hover:border-brand-orange hover:text-brand-orange transition-colors"
+                >
+                  <ArrowLeft className="w-4 h-4" /> Predošlá
+                </Link>
+              ) : (
+                <span
+                  aria-disabled
+                  className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-4 py-2 text-sm font-bold text-muted opacity-50 cursor-not-allowed"
+                >
+                  <ArrowLeft className="w-4 h-4" /> Predošlá
+                </span>
+              )}
+
+              <ul className="flex flex-wrap items-center gap-1.5">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => {
+                  const active = n === currentPage;
+                  return (
+                    <li key={n}>
+                      <Link
+                        href={pageHref(n)}
+                        aria-current={active ? 'page' : undefined}
+                        className={
+                          active
+                            ? 'inline-flex h-10 min-w-[2.5rem] items-center justify-center rounded-full bg-brand-orange px-3 text-sm font-black text-white shadow-soft'
+                            : 'inline-flex h-10 min-w-[2.5rem] items-center justify-center rounded-full border border-line bg-white px-3 text-sm font-bold text-ink hover:border-brand-orange hover:text-brand-orange transition-colors'
+                        }
+                      >
+                        {n}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              {currentPage < totalPages ? (
+                <Link
+                  href={pageHref(currentPage + 1)}
+                  rel="next"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-4 py-2 text-sm font-bold text-ink hover:border-brand-orange hover:text-brand-orange transition-colors"
+                >
+                  Ďalšia <ArrowRight className="w-4 h-4" />
+                </Link>
+              ) : (
+                <span
+                  aria-disabled
+                  className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-4 py-2 text-sm font-bold text-muted opacity-50 cursor-not-allowed"
+                >
+                  Ďalšia <ArrowRight className="w-4 h-4" />
+                </span>
+              )}
+            </nav>
+          )}
         </Container>
       </section>
 

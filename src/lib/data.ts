@@ -294,71 +294,84 @@ export type Testimonial = {
   author: string;
   company: string;
   url: string;
+  /** Voliteľné logo e-shopu (uložené v public/images/testimonials/). */
+  logo?: string;
 };
 
-export const testimonials: Testimonial[] = [
-  {
-    quote:
-      'S Neoshipom sme získali nielen lepšie ceny, ale hlavne porovnateľne jednoduchý a prehľadný systém. Tvorba balíkov je rýchla a doručenie spoľahlivé.',
-    author: 'Tím madebythe.com',
-    company: 'madebythe.com',
+import testimonialQuotes from './testimonials-quotes.json';
+
+/**
+ * Citáty (autor + company + quote) prevzaté priamo z homepage neoship.sk
+ * cez `scripts/fetch-testimonials.mjs`. URL a logo mapujeme manuálne podľa company.
+ */
+type ExtractedQuote = {
+  logoFile: string | null;
+  author: string;
+  company: string;
+  quote: string;
+};
+const EXTRACTED = testimonialQuotes as ExtractedQuote[];
+
+/** Mapovanie company → URL eshopu a názov logo súboru v public/images/testimonials/. */
+const TESTIMONIAL_META: Record<string, { url: string; logo: string }> = {
+  'madebythe.com': {
     url: 'https://madebythe.com',
+    logo: '/images/testimonials/1676449926_madebythe.png',
   },
-  {
-    quote:
-      'Vďaka jednému systému máme prehľad nad všetkými zásielkami. Kuriéri sú spoľahliví a podpora reaguje promptne.',
-    author: 'Tím hovienkovo.sk',
-    company: 'hovienkovo.sk',
+  'hovienkovo.sk': {
     url: 'https://hovienkovo.sk',
+    logo: '/images/testimonials/hovienkovo.png',
   },
-  {
-    quote:
-      'Neoship nám významne uľahčil dennú expedíciu – integrácia bola hladká a šetríme veľa času pri tlačení štítkov.',
-    author: 'Tím fragaria.sk',
-    company: 'fragaria.sk',
+  'fragaria.sk': {
     url: 'https://fragaria.sk',
+    logo: '/images/testimonials/fragaria.png',
   },
-  {
-    quote:
-      'Spolupráca je profesionálna a flexibilná. Cenovo, ako aj servisne nás Neoship plne uspokojuje.',
-    author: 'Tím biostyle.sk',
-    company: 'biostyle.sk',
+  'biostyle.sk': {
     url: 'https://biostyle.sk',
+    logo: '/images/testimonials/biostyle-logo.jpg',
   },
-  {
-    quote:
-      'Pred Neoshipom sme expedíciu robili manuálne. Dnes sa balíky tvoria sami a my sa môžeme venovať predaju.',
-    author: 'Tím topankaren.sk',
-    company: 'topankaren.sk',
+  'topankaren.sk': {
     url: 'https://topankaren.sk',
+    logo: '/images/testimonials/topankaren.jpeg',
   },
-  {
-    quote:
-      'Oceňujem prehľad o dobierkach a financiách. Konečne viem, kedy mi ktorý prepravca pošle peniaze.',
-    author: 'Kristína Tormová',
-    company: 'kristinatormova.sk',
+  'kristinatormova.sk': {
     url: 'https://kristinatormova.sk',
+    logo: '/images/testimonials/logo-kristinatormova.png',
   },
-  {
-    quote:
-      'S Neoshipom posielame stovky balíkov mesačne bez problémov. Systém ide ruka v ruke s naším rastom.',
-    author: 'Tím autodielygafa.sk',
-    company: 'autodielygafa.sk',
+  'autodielygafa.sk': {
     url: 'https://autodielygafa.sk',
+    logo: '/images/testimonials/GAFA-LOGO-PRIMARY-RGB-BLACK.png',
   },
-  {
-    quote:
-      'Páči sa nám flexibilita prepravcov a možnosť meniť ich podľa potreby zákazníka – jednou platformou.',
-    author: 'Tím detskykutik.sk',
-    company: 'detskykutik.sk',
+  'detskykutik.sk': {
     url: 'https://detskykutik.sk',
+    logo: '/images/testimonials/1662468064_logo-detsky-kutik.jpg',
   },
+  'kuchynovo.sk': {
+    url: 'https://kuchynovo.sk',
+    logo: '/images/testimonials/kuchynovo.jpg',
+  },
+};
+
+const fromNeoship: Testimonial[] = EXTRACTED.map((e) => {
+  const meta = TESTIMONIAL_META[e.company];
+  return {
+    quote: e.quote,
+    author: e.author,
+    company: e.company,
+    url: meta?.url ?? '#',
+    ...(meta?.logo ? { logo: meta.logo } : {}),
+  };
+});
+
+export const testimonials: Testimonial[] = [
+  ...fromNeoship,
   {
     quote:
-      'Neoship je presne to, čo náš e-shop potreboval – jednoduchosť, spoľahlivosť a férové ceny.',
-    author: 'Tím kuchynovo.sk',
-    company: 'kuchynovo.sk',
-    url: 'https://kuchynovo.sk',
+      'Neoship nám veľmi zjednodušil administráciu a kontakt s dopravcami. Náš zákaznícky servis oceňuje jednoduché vyhľadávanie a možnosť kontaktovať všetkých dopravcov cez jeden systém. Mne pomáhajú štatistiky pri vyhodnocovaní vratkovosti a pomáhajú mi udržať si prehľad o zásielkach pri veľkom množstve zasielaných balíkov.',
+    author: 'Juraj Balogh',
+    company: 'Panta Rhei',
+    url: 'https://www.pantarhei.sk',
+    logo: '/images/testimonials/pantarhei.png',
   },
 ];
 

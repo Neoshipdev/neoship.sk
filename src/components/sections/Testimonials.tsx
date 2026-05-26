@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Quote } from 'lucide-react';
 import { Container } from '@/components/layout/Container';
@@ -134,15 +135,31 @@ function TestimonialCard({
   author,
   company,
   url,
+  logo,
 }: {
   quote: string;
   author: string;
   company: string;
   url: string;
+  logo?: string;
 }) {
   return (
     <article className="h-full rounded-2xl bg-white border border-line p-7 shadow-soft flex flex-col">
-      <Quote className="w-8 h-8 text-brand-orange-100 fill-brand-orange-50" />
+      <div className="flex items-start justify-between gap-4">
+        <Quote className="w-8 h-8 text-brand-orange-100 fill-brand-orange-50 shrink-0" />
+        {logo && (
+          <div className="relative h-10 w-28 shrink-0">
+            <Image
+              src={logo}
+              alt={`${company} logo`}
+              fill
+              unoptimized
+              sizes="112px"
+              className="object-contain object-right"
+            />
+          </div>
+        )}
+      </div>
       <p className="mt-4 text-base md:text-[17px] leading-relaxed text-ink flex-1">{quote}</p>
       <div className="mt-6 pt-5 border-t border-line">
         <p className="font-bold text-ink text-sm">{author}</p>
