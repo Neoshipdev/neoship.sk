@@ -168,7 +168,11 @@ export function DashboardMockup() {
           <span className="w-1 h-1 rounded-full bg-line" />
           <span className="text-rose-600">Packeta</span>
           <span className="w-1 h-1 rounded-full bg-line" />
+          <span className="text-amber-600">Slovenská pošta</span>
+          <span className="w-1 h-1 rounded-full bg-line" />
           <span className="text-red-600">DPD</span>
+          <span className="w-1 h-1 rounded-full bg-line" />
+          <span className="text-violet-600">SDS</span>
         </div>
       </motion.div>
     </div>

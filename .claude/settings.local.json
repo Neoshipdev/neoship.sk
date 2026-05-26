@@ -25,7 +25,11 @@
       "Bash(curl -sL -A \"Mozilla/5.0\" -o \"public/images/navody/steps/_test.png\" \"https://www.neoship.sk/thumbs/1000%C3%971000%C3%97max/1prepojenie-Packeta.png\")",
       "Bash(git config *)",
       "Bash(git add *)",
-      "Bash(git -c user.name=Neoshipdev -c user.email=lenka.falatova@neoship.sk commit -m ' *)"
+      "Bash(git -c user.name=Neoshipdev -c user.email=lenka.falatova@neoship.sk commit -m ' *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(curl -s -o /dev/null -w \"served size: %{size_download} B, code: %{http_code}\\\\n\" \"http://localhost:3000/images/hromadne.png\")"
     ]
   }
 }

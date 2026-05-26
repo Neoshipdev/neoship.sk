@@ -7,7 +7,6 @@ export const NAVOD_CATEGORIES = [
   'Eshopové systémy',
   'Fakturačné systémy',
   'Manuály - Aktivácia pluginov',
-  'Funkcionality v Neoshipe',
   'Párovanie dobierok',
 ] as const;
 
@@ -448,26 +447,20 @@ const navodyData: Omit<Navod, 'image' | 'gallery'>[] = [
     title: 'Hromadný export dát z Oberonu do Neoshipu',
     category: 'Fakturačné systémy',
     perex:
-      'Okrem e-shopových systémov môžete exportovať údaje o príjemcoch aj z fakturačných systémov, akým je Oberon. Z faktúr jednoducho vytvoríte dáta pre prepravcu.',
-    blocks: [
-      {
-        type: 'text',
-        text: 'Z Oberonu vyexportujete údaje o objednávkach do súboru, ktorý nahráte do Neoshipu cez ikonu balíka – vyberiete prepravcu, zvolíte import a vytlačíte prepravné štítky.',
-      },
-    ],
+      'Okrem eshopových systémov možete exportovať údaje o príjemcoch aj z fakturačných systémov, akým je napríklad aj Oberon. Pozrite sa, akým jednoduchým spôsobom vytvoríte z faktúr dáta pre prepravcu.',
+    blocks: [],
+    video: 'https://www.youtube.com/embed/jjkcQ3xbZgc',
+    hideHeroImage: true,
   },
   {
     slug: 'hromadny-export-dat-z-omegy-do-neoshipu',
     title: 'Hromadný export dát z Omegy do Neoshipu',
     category: 'Fakturačné systémy',
     perex:
-      'Expedujte pohodlne už aj z Omegy. Využite svoj fakturačný systém nielen na správu faktúr, ale aj ako pomocníka pri expedícii balíkov.',
-    blocks: [
-      {
-        type: 'text',
-        text: 'Z Omegy vyexportujete údaje o objednávkach do súboru, ktorý nahráte do Neoshipu cez ikonu balíka – vyberiete prepravcu, zvolíte import a vytlačíte prepravné štítky.',
-      },
-    ],
+      'Expedujte pohodlne už aj z Omegy. Využite váš fakturačný systém nielen na správu faktúr, ale aj na veľkého pomocníka pri expedícii vašich balíkov. Nahliadnite, aké je to jednoduché.',
+    blocks: [],
+    video: 'https://www.youtube.com/embed/8tQtpBGRBcQ',
+    hideHeroImage: true,
   },
 
   /* ───────────── Manuály - Aktivácia pluginov ───────────── */
@@ -476,18 +469,102 @@ const navodyData: Omit<Navod, 'image' | 'gallery'>[] = [
     title: 'Manuál - nastavenie Packety (výdajných miest) v Shoptete',
     category: 'Manuály - Aktivácia pluginov',
     perex:
-      'Ako nastaviť zobrazovanie Packety a jej výdajných miest v košíku e-shopu na Shoptete? V tomto manuáli sa to dozviete krok po kroku.',
+      'Ako nastaviť zobrazovanie Packety a jej výdajných miest v košíku eshopu na Shoptete? V tomto manuále sa to krok po kroku dozviete.',
     blocks: [
+      { type: 'text', text: 'V administrácii vášho eshopu prejdete na Prepojenie – Packeta:' },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1prepojenie-Packeta.png',
+        alt: 'Prepojenie Packeta v administrácii Shoptetu',
+      },
+      {
+        type: 'text',
+        text: 'Zakliknete možnosť „Som zaregistrovaný“ a vložíte API kľúče, ktoré vám zašleme na vyžiadanie:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/2-Packeta.png',
+        alt: 'Vloženie API kľúčov pre Packetu',
+      },
+      {
+        type: 'text',
+        text: 'Potom prejdete v menu na Nastavenia – Doprava a platby – Spôsoby dopravy:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/4-nastavenia-dopravy.png',
+        alt: 'Nastavenia – Doprava a platby – Spôsoby dopravy',
+      },
+      { type: 'text', text: 'Pridáte nový spôsob dopravy:' },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Pridat-sposob-dopravy.png',
+        alt: 'Pridať spôsob dopravy',
+      },
+      { type: 'heading', text: 'Vyplníte tieto polia:' },
       {
         type: 'steps',
-        title: 'Postup nastavenia',
         items: [
-          'Prepojte Packetu v administrácii – Prepojenia → Packeta, vyberte „Som registrovaný“ a zadajte API kľúče.',
-          'Prejdite do Nastavenia → Doprava a platby → Spôsoby dopravy a pridajte novú metódu.',
-          'Vyplňte povinné polia – pomenujte službu, ako kuriéra vyberte „Packeta“, typ služby „Pobočky a boxy“, zapnite viditeľnosť, vyberte platby a uložte.',
-          'Otvorte novú dopravu a nastavte cenu za prepravu zobrazovanú v košíku.',
-          'V nastaveniach konektora Neoship kliknite na pridať prepravcu, vľavo vyberte Packeta, vpravo ju namapujte na dopravu „Packeta výdajné miesta“ a uložte.',
+          'Názov: pomenujete Packetu tak, ako chcete, aby sa zobrazovala v košíku.',
+          'Kuriérska spoločnosť: vyberiete „Packeta“.',
+          'Prepravná služba: vyberiete „Pobočky a boxy“.',
+          'Zakliknete viditeľnosť.',
+          'Možnosti platieb: zakliknete tie možnosti, ktoré zákazníkom ponúkate alebo chcete ponúknuť.',
+          'Uložíte.',
         ],
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Komplet-nastavenie.png',
+        alt: 'Kompletné nastavenie dopravy',
+      },
+      {
+        type: 'text',
+        text: 'Keď to celé uložíte, kliknete si opäť na novo-nastavenú dopravu, kde sa vám dole zobrazí už aj Cenník. Tu si nastavíte cenu dopravy, ktorá sa bude zobrazovať pri Packete v košíku. Kliknete na „Uložiť a odísť“:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1713446201_5a-nastavenie-ceny-dopravy.png',
+        alt: 'Nastavenie ceny dopravy',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1713446225_5b-cena.png',
+        alt: 'Cenník dopravy',
+      },
+      { type: 'text', text: 'V možnostiach dopravy pribudne „Packeta výdajné miesta“:' },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Zobrazenie-v-kosiku.png',
+        alt: 'Zobrazenie Packety v košíku',
+      },
+      {
+        type: 'text',
+        text: 'Aby fungovalo prepojenie Neoship – Shoptet a správne sa do Neoshipu importovali prijaté objednávky, je potrebné upraviť ešte nastavenia v Neoshipe – v Konektore:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1713446534_7a-konektor.png',
+        alt: 'Konektor Neoship – Shoptet',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1713446548_7b-edit-konektor.png',
+        alt: 'Editácia konektora',
+      },
+      {
+        type: 'text',
+        text: 'Kliknete na „pridať prepravcu“. Otvorí sa prázdne pole. Z ponúkaných možností vľavo vyberiete Packeta. Z ponúkaných možností vpravo vyberiete prepravu, ktorú ste si nastavili, v našom prípade „Packeta výdajné miesta“, a uložíte:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1713446624_8a-pridat-prepravcu.png',
+        alt: 'Pridanie prepravcu v Neoshipe',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1713446679_Mapovanie-prepravcov.png',
+        alt: 'Mapovanie prepravcov v Neoshipe',
       },
     ],
   },
@@ -496,18 +573,105 @@ const navodyData: Omit<Navod, 'image' | 'gallery'>[] = [
     title: 'Manuál - nastavenie dopravcov SPS, GLS, DPD v Shoptete',
     category: 'Manuály - Aktivácia pluginov',
     perex:
-      'Aby e-shopy na platforme Shoptet mohli exportovať objednávkové dáta do Neoshipu, je potrebné správne nastaviť jednotlivých dopravcov. Manuál vysvetľuje nastavenie SPS – GLS a DPD postupujú rovnako.',
+      'Aby eshopy založené na platforme Shoptet mohli exportovať objednávkové dáta do Neoshipu, je potrebné správne nastaviť jednotlivých dopravcov v ich administrácii. Ako správne vytvoriť SPS, GLS a DPD prepravcu nájdete v tomto manuále.',
     blocks: [
       {
+        type: 'text',
+        text: 'V tomto konkrétnom manuále je vysvetlený a ukázaný príklad nastavenia SPS prepravy. Nastavenie GLS a DPD funguje na rovnakom princípe.',
+      },
+      {
+        type: 'text',
+        text: 'V administrácii vášho eshopu prejdete na Nastavenia – Doprava a platby – Spôsoby dopravy:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1-nastavenie.png',
+        alt: 'Nastavenia – Doprava a platby – Spôsoby dopravy',
+      },
+      {
+        type: 'text',
+        text: 'Ak ste pred využívaním Neoshipu využívali prepravnú spoločnosť SPS (DPD, GLS), mali ste ju zapnutú v košíku a idete naďalej využívať služby SPS (DPD, GLS) ale v spolupráci s Neoshipom, je potrebné:',
+      },
+      {
+        type: 'text',
+        text: '1. Zneviditeľniť alebo odstrániť túto dopravu v spôsoboch dopravy, aby sa nezobrazovala v košíku:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/2-neviditelnost.png',
+        alt: 'Skrytie pôvodného dopravcu v košíku',
+      },
+      {
+        type: 'text',
+        text: '2. Nastaviť „novú SPS (DPD, GLS)“ – kvôli správnemu importu dát do Neoshipu:',
+      },
+      {
         type: 'steps',
-        title: 'Postup nastavenia',
         items: [
-          'Prejdite do Nastavenia → Doprava a platby → Spôsoby dopravy v administrácii e-shopu.',
-          'Ak ste doteraz používali SPS/DPD/GLS priamo, skryte starého dopravcu v košíku, aby nevznikla duplicita.',
-          'Vytvorte nového dopravcu – pomenujte ho podľa potreby, kuriérsku spoločnosť aj typ dopravy nastavte na „Vlastná doprava“, zapnite viditeľnosť, vyberte platby a uložte.',
-          'Po uložení dopravu znova otvorte a nastavte cenník zobrazovaný v košíku.',
-          'V konektore Neoship pridajte prepravcu – vyberte kuriérsku spoločnosť (SPS, DPD alebo GLS) a namapujte ju na novú dopravu.',
+          'Názov: pomenujete prepravcu tak, ako chcete, aby sa zobrazoval v košíku.',
+          'Kuriérska spoločnosť: vyberiete „Vlastná preprava“.',
+          'Prepravná služba: vyberiete „Vlastná preprava“.',
+          'Zakliknete viditeľnosť.',
+          'Možnosti platieb: zakliknete tie, ktoré zákazníkom ponúkate alebo chcete ponúknuť.',
+          'Uložíte.',
         ],
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/3-vytvorit-dopravu.png',
+        alt: 'Vytvorenie novej dopravy',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/4-nastavenie-novej-dopravy.png',
+        alt: 'Nastavenie polí novej dopravy',
+      },
+      {
+        type: 'text',
+        text: 'Keď to celé uložíte, kliknete si opäť na novo-nastavenú dopravu, kde sa vám dole zobrazí už aj Cenník. Tu si nastavíte cenu dopravy, ktorá sa bude zobrazovať pri prepravcovi v košíku. Kliknete na „Uložiť a odísť“:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/5a-nastavenie-ceny-dopravy.png',
+        alt: 'Nastavenie ceny dopravy',
+      },
+      { type: 'image', src: '/images/navody/steps/5b-cena.png', alt: 'Cenník dopravy' },
+      {
+        type: 'text',
+        text: 'V košíku sa vám už bude zobrazovať SPS (DPD, GLS) doručenie na adresu:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/6-nastavena-doprava-v-kosiku.png',
+        alt: 'Nastavená doprava v košíku',
+      },
+      {
+        type: 'text',
+        text: 'Aby fungovalo prepojenie Neoship – Shoptet a správne sa do Neoshipu importovali prijaté objednávky, je potrebné upraviť ešte nastavenia v Neoshipe – v Konektore:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/7a-konektor.png',
+        alt: 'Konektor v Neoshipe',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/7b-edit-konektor.png',
+        alt: 'Editácia konektora',
+      },
+      {
+        type: 'text',
+        text: 'Kliknete si na „pridať prepravcu“. Otvorí sa prázdne pole. Z ponúkaných možností vľavo vyberiete Slovak Parcel Service (Direct Parcel Distribution, GLS General Logistics Systems Slovakia s.r.o.). Z ponúkaných možností vpravo vyberiete prepravu, ktorú ste si nastavili, t.j. v našom prípade SPS doručenie na adresu. Nastavenie uložíte.',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/8a-pridat-prepravcu.png',
+        alt: 'Pridanie prepravcu v Neoshipe',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/8b-nastavenie-prepravcov-v-Neoshipe.png',
+        alt: 'Nastavenie prepravcov v Neoshipe',
       },
     ],
   },
@@ -516,29 +680,85 @@ const navodyData: Omit<Navod, 'image' | 'gallery'>[] = [
     title: 'Manuál - Aktivácia konektora Neoship pre Money S4/Money S5',
     category: 'Manuály - Aktivácia pluginov',
     perex:
-      'Konektor Neoship na zautomatizovanie expedície je určený pre všetky e-shopy vystavujúce faktúry v Money S4/Money S5. Umožňuje jednoduchú tvorbu balíkov a tlač štítkov pre SPS, GLS a DPD.',
+      'Konektor Neoship pre zautomatizovanie expedície je určený pre všetky eshopy vystavujúce faktúry v Money S4/Money S5. Bezstarostná tvorba balíkov a pohodlná tlač štítkov už bude samozrejmosťou. Vďaka konektoru jednoducho vyexpedujete a vytlačíte štítky pre SPS, GLS a DPD.',
     blocks: [
+      { type: 'text', text: '1. Na hornej lište v aplikácii Neoship uvidíte túto ikonku:' },
       {
-        type: 'steps',
-        title: 'Aktivácia konektora',
-        items: [
-          'Vyhľadajte ikonu konektora na hornej lište aplikácie Neoship.',
-          'Kliknite na ikonu a vyberte „nové napojenie“.',
-          'Vyberte Money S4/S5 a vyplňte názov prepojenia, URL fakturačného systému a API dáta (CLIENT ID a CLIENT SECRET od správcu Money).',
-          'Kliknite Pokračovať.',
-          'Cez ikonu pera nastavte prepravcov, platobné metódy a namapujte stĺpce z Money.',
-        ],
+        type: 'image',
+        src: '/images/navody/steps/Ikona-konektora.png',
+        alt: 'Ikona konektora v Neoshipe',
       },
       {
-        type: 'steps',
-        title: 'Tvorba balíkov a štítkov',
-        items: [
-          'Kliknite na ikonu balíka pre import faktúr.',
-          'Zadajte filtre (dátum vytvorenia faktúry) a Neoship dotiahne relevantné objednávky.',
-          'Označte faktúry a kliknite Import.',
-          'Skontrolujte a upravte dáta, potom znova kliknite Import.',
-          'Vytlačte prepravné štítky zo zoznamu balíkov.',
-        ],
+        type: 'text',
+        text: '2. Po kliknutí na ikonu konektora sa zobrazí zoznam napojení, kde kliknete na nové napojenie:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Zoznam-napojeni.png',
+        alt: 'Zoznam napojení v Neoshipe',
+      },
+      {
+        type: 'text',
+        text: '3. Z ponúkaných možností vyberiete Money S4/S5. Do poľa Názov napíšete vami zvolený názov prepojenia (je na vás, aký názov si zvolíte). Do poľa URL vložíte URL vášho fakturačného systému, v ktorom vystavujete faktúry. Ešte je potrebné doplniť API dáta, ako sú CLIENT ID a CLIENT SECRET – tieto vám poskytne váš správca alebo zamestnanec technickej podpory Money. Kliknete na Pokračovať.',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Konektor-Money.png',
+        alt: 'Konfigurácia konektora pre Money',
+      },
+      {
+        type: 'text',
+        text: '4. Konektor je nastavený. Aby sa do Neoshipu doťahovali korektné dáta z faktúr, je potrebné nastaviť prepravcov, ktorých v rámci služieb Neoshipu využívate alebo budete využívať, platobné metódy týkajúce sa dobierok, prípadne namapovať stĺpec z Money, ktorý hovorí o tom, z koľkých balíkov bude pozostávať zásielka pre príjemcu.',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/nastavenia-konektora.png',
+        alt: 'Nastavenia konektora',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1694517539_Mapovanie-prepravcov.png',
+        alt: 'Mapovanie prepravcov',
+      },
+
+      { type: 'heading', text: 'Tvorba balíkov a štítkov' },
+      {
+        type: 'text',
+        text: 'Ako dotiahnuť dáta z faktúr a následne z nich vytvoriť balíky a vytlačiť štítky, si môžete pozrieť v inštruktážnom videu.',
+      },
+      {
+        type: 'text',
+        text: '1. Na to, aby ste automatizovane dotiahli dáta z faktúr do Neoshipu a vytvorili k nim štítky, je potrebné kliknúť na ikonu balíka.',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/import-balikov-z-Money.png',
+        alt: 'Import balíkov z Money',
+      },
+      {
+        type: 'text',
+        text: '2. Zobrazí sa stránka so Zoznamom faktúr. V tomto momente si sami do filtra zadáte, aké faktúry chcete dostať do Neoshipu. Ak sú to práve dnešné, do filtra nie je potrebné zadávať nič – systém si ich dotiahne automaticky. Neoship našiel vo fakturačnom systéme 7 objednávok. (Ak budete chcieť do Neoshipu dotiahnuť faktúry z konkrétneho dňa alebo z iných dní, vo filtri je potrebné vybrať dátum ich vytvorenia.)',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Objednavky-v-Neoshipe.png',
+        alt: 'Zoznam objednávok v Neoshipe',
+      },
+      { type: 'text', text: '3. Označíte si ich a kliknete na Import:' },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Oznacene-objednavky-a-prichystane-na-import.png',
+        alt: 'Označené objednávky pripravené na import',
+      },
+      {
+        type: 'text',
+        text: '4. Po importe sa vám na kontrolu či prípadnú úpravu dát zobrazia opäť všetky dáta, a ak je všetko v poriadku, opäť kliknete na Import. Dáta sa nahrajú do zoznamu balíkov, odkiaľ si k nim už iba vytlačíte prepravné štítky.',
+      },
+      { type: 'image', src: '/images/navody/steps/Baliky.png', alt: 'Zoznam balíkov v Neoshipe' },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Priprava-na-tlac.png',
+        alt: 'Príprava na tlač štítkov',
       },
     ],
   },
@@ -547,23 +767,92 @@ const navodyData: Omit<Navod, 'image' | 'gallery'>[] = [
     title: 'Manuál - Aktivácia Balíkova v doplnku Neoship pre Shoptet',
     category: 'Manuály - Aktivácia pluginov',
     perex:
-      'Inštalácia mapy výdajných miest SPS (Balíkovo) v košíku e-shopu je podľa tohto manuálu možná pre klientov NEOSHIP s.r.o., ktorí majú aktivovaný doplnok Neoship v Shoptete.',
+      'Inštalácia mapky výdajných miest SPS = Balíkova v košíku eshopu je v rámci tohto manuálu možná iba pre klientov spoločnosti NEOSHIP s.r.o., ktorí zároveň majú aktivovaný doplnok Neoship v Shoptete.',
     blocks: [
       {
-        type: 'steps',
-        title: 'Postup aktivácie',
-        items: [
-          'V administrácii Shoptetu vyhľadajte SPS doplnok a objednajte si ho.',
-          'Prejdite na nastavenie doplnku.',
-          'V nastaveniach aktivujte požadované možnosti.',
-          'Prejdite na nastavenie dopravy.',
-          'V spôsoboch dopravy nájdite „balíkovo“ a aktivujte ho.',
-          'Nakonfigurujte balíkovo – názov, platby a ceny pre Slovensko.',
-          'V Neoshipe kliknite na ikonu konektora.',
-          'V napojení kliknite na ikonu pera (editácia).',
-          'Kliknite na „pridať prepravcu“.',
-          'V ľavom stĺpci vyberte SPS, v pravom stĺpci balíkovo a nastavenie uložte.',
-        ],
+        type: 'text',
+        text: '1. V administrácii Shoptetu, v Shoptet doplnkoch vyhľadáte SPS. Otvoríte a kliknete na „objednať doplnok“:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/sps-doplnok.png',
+        alt: 'SPS doplnok v Shoptete',
+      },
+      { type: 'text', text: '2. Následne kliknete na „prejsť na nastavenie doplnku“:' },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Nastavenie-doplnku.png',
+        alt: 'Prejsť na nastavenie doplnku',
+      },
+      {
+        type: 'text',
+        text: '3. V nastaveniach je potrebné mať vybraté a zakliknuté tieto možnosti (do prvých dvoch riadkov nedopĺňate nič):',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/nastavenie-moznosti.png',
+        alt: 'Nastavenie možností doplnku',
+      },
+      {
+        type: 'text',
+        text: '4. Potom prejdete na nastavenie dopravy, aby sa doručenie do Balíkova zobrazovalo v košíku:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/zobrazovanie-v-kosiku.png',
+        alt: 'Nastavenie zobrazovania dopravy v košíku',
+      },
+      {
+        type: 'text',
+        text: '5. V spôsoboch dopravy nájdete „balíkovo“ a kliknete na „x“, čím sa tento spôsob doručenia aktivuje:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/balikovo-x.png',
+        alt: 'Aktivácia Balíkova kliknutím na x',
+      },
+      { type: 'text', text: 'Prepravca sa stane aktívnym a X vystrieda ikona potvrdenia:' },
+      {
+        type: 'image',
+        src: '/images/navody/steps/ikona-potvrdenia.png',
+        alt: 'Ikona potvrdenia aktivácie',
+      },
+      {
+        type: 'text',
+        text: '6. Kliknete na „balíkovo“ a prípadne upravíte názov, vyberiete možnosti platieb, v cenníku si vyberiete Slovensko a nastavíte si cenu, ktorá sa bude zobrazovať v košíku:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/nastavenia-balikova.png',
+        alt: 'Nastavenia balíkova – názov, platby, ceny',
+      },
+      { type: 'text', text: 'To je všetko, čo je potrebné nastaviť v Shoptete.' },
+      { type: 'text', text: '7. V Neoshipe kliknete na ikonu konektora:' },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Screenshot-from-2023-07-14-13-17-01.png',
+        alt: 'Ikona konektora v Neoshipe',
+      },
+      { type: 'text', text: '8. V napojení kliknete na ikonu pera = editácia:' },
+      { type: 'image', src: '/images/navody/steps/editacia.png', alt: 'Editácia napojenia' },
+      { type: 'text', text: '9. Potom na „pridať prepravcu“:' },
+      {
+        type: 'image',
+        src: '/images/navody/steps/pridat-prepravcu.png',
+        alt: 'Pridať prepravcu',
+      },
+      {
+        type: 'text',
+        text: '10. V ľavom stĺpci vyberiete prepravcu SPS v Neoshipe, v pravom stĺpci vyberiete prepravcu = balíkovo (resp. tak, ako ste si ho nazvali v košíku). V pravom dolnom rohu nastavenia uložíte:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/balikovo-v-eshope.png',
+        alt: 'Mapovanie SPS na balíkovo v e-shope',
+      },
+      {
+        type: 'text',
+        text: '11. Teraz je všetko pripravené na to, aby ste mohli jednoducho importovať objednávky s doručením do Balíkova priamo do Neoshipu a hromadne k nim generovať prepravné štítky.',
       },
     ],
   },
@@ -572,23 +861,111 @@ const navodyData: Omit<Navod, 'image' | 'gallery'>[] = [
     title: 'Manuál - Aktivácia konektora Neoship pre Shoptet',
     category: 'Manuály - Aktivácia pluginov',
     perex:
-      'Automatizujte vašu expedíciu vďaka konektoru Neoship, ktorý je pripravený pre všetkých používateľov Shoptetu.',
+      'Automatizujte vašu expedíciu vďaka konektoru Neoship, ktorý je pripravený pre všetkých užívateľov Shoptetu. Bezstarostná tvorba balíkov a pohodlná tlač štítkov už bude samozrejmosťou. Vďaka konektoru vyexpedujete objednávky a vytlačíte štítky pre SPS, GLS a Packeta.',
     blocks: [
+      { type: 'text', text: '1. Na hornej lište v aplikácii Neoship uvidíte túto ikonku:' },
       {
-        type: 'steps',
-        title: 'Postup aktivácie',
-        items: [
-          'Kliknite na ikonu konektora na hornej lište aplikácie Neoship.',
-          'Vyberte zobrazenie napojení a kliknite na „nové napojenie“.',
-          'Vyberte Shoptet, zadajte názov prepojenia a URL e-shopu, API kľúč nechajte prázdny a pokračujte.',
-          'Prihláste sa do administrácie e-shopu, v rozšíreniach Shoptetu nájdite doplnok Neoship a nainštalujte ho.',
-          'API kľúč sa po úspešnej inštalácii automaticky doplní v Neoshipe.',
-          'Cez ikonu pera nastavte prepravcov a platobné metódy, voliteľne aj zmeny stavov objednávok.',
-          'Kliknite na ikonu balíka a importujte dnešné objednávky (alebo filtrujte podľa dátumu).',
-          'Označte objednávky a kliknite Import na kontrolu dát.',
-          'Potvrďte import znova, aby sa dáta načítali do zoznamu balíkov.',
-          'Vytlačte prepravné štítky zo sekcie balíkov.',
-        ],
+        type: 'image',
+        src: '/images/navody/steps/Ikona-konektora.png',
+        alt: 'Ikona konektora v Neoshipe',
+      },
+      {
+        type: 'text',
+        text: '2. Po kliknutí na ikonu konektora sa zobrazí zoznam napojení, kde kliknete na nové napojenie:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Zoznam-napojeni.png',
+        alt: 'Zoznam napojení v Neoshipe',
+      },
+      {
+        type: 'text',
+        text: '3. Z ponúkaných možností vyberiete Shoptet. Do poľa Názov napíšete vami zvolený názov prepojenia (je na vás, aký názov si zvolíte). Do poľa URL vložíte vašu URL adresu eshopu až po lomku, napr. https://mojnajkrajsieshop.sk/. Pole API kľúč zatiaľ ostane prázdne. Kliknete na Pokračovať:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1662373810_Nove-napojenie-Shoptet.png',
+        alt: 'Nové napojenie Shoptet',
+      },
+      {
+        type: 'text',
+        text: '4. Potom sa prihlásite do administrácie vášho eshopu a v shoptet doplnkoch si vyhľadáte doplnok Neoship. Kliknete na Objednať a Inštalovať:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Doplnok-Neoship-v-Shoptete.png',
+        alt: 'Doplnok Neoship v Shoptete',
+      },
+      { type: 'text', text: 'Doplnok sa úspešne nainštaloval:' },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Uspesna-instalacia-doplnku-Neoship-v-Shoptete.png',
+        alt: 'Úspešná inštalácia doplnku Neoship v Shoptete',
+      },
+      {
+        type: 'text',
+        text: '5. Zároveň sa v tomto momente do Neoshipu, do poľa API kľúč, automaticky dotiahol vygenerovaný API kľúč na základe úspešne aktivovaného doplnku:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/API-kluc-v-Neoshipe.png',
+        alt: 'API kľúč v Neoshipe',
+      },
+      {
+        type: 'text',
+        text: '6. Konektor je nastavený. Aby sa do Neoshipu doťahovali korektné dáta z objednávok, je potrebné nastaviť prepravcov, ktorých v rámci služieb Neoshipu využívate alebo budete využívať, a platobné metódy týkajúce sa dobierok. Zároveň si ľubovoľne môžete nastaviť zmenu stavu objednávky v Shoptete po importe dát do Neoshipu a tiež nastaviť zmenu stavu objednávky po doručení zásielky.',
+      },
+      { type: 'text', text: 'Urobíte tak cez ikonu pera:' },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Pridanie-prepravcov.png',
+        alt: 'Pridanie prepravcov v konektore',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1683787860_Nastavenie-konektora-v-Neoshipe.png',
+        alt: 'Nastavenie konektora v Neoshipe',
+      },
+
+      { type: 'heading', text: 'Tvorba balíkov a štítkov' },
+      {
+        type: 'text',
+        text: 'Ako dotiahnuť dáta z objednávok a následne z nich vytvoriť balíky a vytlačiť štítky, si môžete pozrieť v inštruktážnom videu.',
+      },
+      { type: 'text', text: 'Alebo si krok po kroku prejdite nasledovný manuál:' },
+      {
+        type: 'text',
+        text: '1. Na to, aby ste automatizovane dotiahli dáta z objednávok do Neoshipu a vytvorili k nim štítky, je potrebné kliknúť na ikonu balíka:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Kliknutie-na-zoznam-objednavok.png',
+        alt: 'Kliknutie na zoznam objednávok',
+      },
+      {
+        type: 'text',
+        text: '2. Zobrazí sa stránka so Zoznamom objednávok. V tomto momente si sami do filtra zadáte, aké objednávky chcete dostať do Neoshipu. Ak sú to práve dnešné, do filtra nie je potrebné zadávať nič – systém si ich dotiahne automaticky. Neoship našiel v eshope 7 objednávok, z toho 4 prijaté na prepravu cez SPS a 3 cez GLS. (Ak to budú objednávky z konkrétneho dňa, vo filtri je potrebné vybrať dátum ich prijatia.)',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Objednavky-v-Neoshipe.png',
+        alt: 'Zoznam objednávok v Neoshipe',
+      },
+      { type: 'text', text: '3. Objednávky si označíte a kliknete na Import:' },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Oznacene-objednavky-a-prichystane-na-import.png',
+        alt: 'Označené objednávky pripravené na import',
+      },
+      {
+        type: 'text',
+        text: '4. Po importe sa vám na kontrolu, či prípadnú úpravu dát, zobrazia opäť všetky objednávky, a ak je všetko v poriadku, opäť kliknete na Import. Dáta sa nahrajú do zoznamu balíkov, odkiaľ si k nim už iba vytlačíte prepravné štítky:',
+      },
+      { type: 'image', src: '/images/navody/steps/Baliky.png', alt: 'Zoznam balíkov v Neoshipe' },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Priprava-na-tlac.png',
+        alt: 'Príprava na tlač štítkov',
       },
     ],
   },
@@ -597,26 +974,110 @@ const navodyData: Omit<Navod, 'image' | 'gallery'>[] = [
     title: 'Manuál - Aktivácia konektora Neoship pre Prestashop',
     category: 'Manuály - Aktivácia pluginov',
     perex:
-      'Konektor Neoship pre PrestaShop (od verzie 1.7 a vyššie) slúži na automatizovaný prenos dát z objednávok pre bezstarostnú tvorbu balíkov a pohodlnú tlač prepravných štítkov.',
+      'Konektor Neoship pre PrestaShop (od verzie 1.7 a vyššie) slúži na automatizovaný prenos dát z objednávok pre bezstarostnú tvorbu balíkov a pohodlnú tlač prepravných štítkov – bez ohľadu na využívanú kuriérsku spoločnosť v Neoshipe.',
     blocks: [
+      { type: 'heading', text: 'Čo je potrebné nastaviť vo vašom eshope?' },
       {
-        type: 'steps',
-        title: 'Nastavenie v PrestaShope',
-        items: [
-          'Stiahnite ZIP súbor z Neoshipu (Dokumenty → Moduly) a nahrajte ho cez IMPROVE → Modules → Module Manager.',
-          'Vytvorte nový webservice kľúč v CONFIGURE → Advanced Parameters → Webservice s oprávneniami: addresses, carriers, countries, currencies, customers, neoship_orders, order_carriers, order_states, orders.',
-          'Vygenerujte API kľúč a nastavenia uložte.',
-        ],
+        type: 'text',
+        text: '1. V aplikácii Neoship (sekcia Dokumenty → Moduly) si stiahnete ZIP súbor a v administrácii vášho e-shopu ho nahráte cez IMPROVE → Modules → Module Manager → Nahrať modul:',
       },
       {
-        type: 'steps',
-        title: 'Nastavenie v Neoshipe',
-        items: [
-          'Kliknite na ikonu konektora na hornej lište.',
-          'Vyberte nové napojenie a typ platformy PrestaShop.',
-          'Zadajte názov prepojenia, URL e-shopu a vygenerovaný API kľúč a pokračujte.',
-          'Cez ikonu pera nastavte prepravcov a mapovanie stavov objednávok.',
-        ],
+        type: 'image',
+        src: '/images/navody/steps/Nahrat-modul.png',
+        alt: 'Nahranie modulu v PrestaShope',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/nahrat-modul-b.png',
+        alt: 'Výber ZIP súboru modulu',
+      },
+      { type: 'text', text: 'Po inštalácii sa modul Neoship objaví v zozname modulov:' },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Neoship-modul.png',
+        alt: 'Modul Neoship v zozname modulov',
+      },
+      {
+        type: 'text',
+        text: '2. V CONFIGURE → Advanced Parameters → Webservice pridáte nový webservice kľúč:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/pridat-novy-webservice-kluc.png',
+        alt: 'Pridať nový webservice kľúč',
+      },
+      {
+        type: 'text',
+        text: 'Zadáte ľubovoľne zvolený názov kľúča a v oprávneniach povolíte tieto zdroje: addresses, carriers, countries, currencies, customers, neoship_orders, order_carriers, order_states, orders (pozri všetky povolené zdroje na obrázkoch nižšie).',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1663140881_Setovanie-API-kluca.png',
+        alt: 'Nastavenie API kľúča – prehľad',
+      },
+      { type: 'image', src: '/images/navody/steps/1.png', alt: 'Povolenie zdroja addresses' },
+      { type: 'image', src: '/images/navody/steps/2.png', alt: 'Povolenie zdroja carriers' },
+      { type: 'image', src: '/images/navody/steps/3.png', alt: 'Povolenie zdroja countries' },
+      { type: 'image', src: '/images/navody/steps/4-Neoship.png', alt: 'Povolenie zdroja neoship_orders' },
+      { type: 'image', src: '/images/navody/steps/5.png', alt: 'Povolenie zdroja order_carriers' },
+      { type: 'image', src: '/images/navody/steps/6.png', alt: 'Povolenie zdroja orders' },
+      { type: 'text', text: 'Tieto nastavenia uložíte.' },
+      { type: 'text', text: 'Potom kliknete na tlačidlo Vygenerovať:' },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Vygenerovanie-API-kluca.png',
+        alt: 'Vygenerovanie API kľúča',
+      },
+      {
+        type: 'text',
+        text: 'Systém vám vygeneruje API kľúč – poznačte si ho, budete ho potrebovať pri nastavovaní napojenia v Neoshipe:',
+      },
+      { type: 'image', src: '/images/navody/steps/API-kluc.png', alt: 'Vygenerovaný API kľúč' },
+
+      { type: 'heading', text: 'Čo je potrebné nastaviť v Neoshipe?' },
+      { type: 'text', text: '1. Na hornej lište v aplikácii Neoship uvidíte túto ikonku:' },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1662380612_Ikona-konektora.png',
+        alt: 'Ikona konektora v Neoshipe',
+      },
+      {
+        type: 'text',
+        text: '2. Zobrazí sa zoznam napojení, kde kliknete na nové napojenie:',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1662380647_Zoznam-napojeni.png',
+        alt: 'Zoznam napojení v Neoshipe',
+      },
+      {
+        type: 'text',
+        text: '3. Z možností vyberiete Prestashop. Zadáte ľubovoľný názov prepojenia, do poľa URL vložíte adresu e-shopu až po lomku (napr. https://neoship.sk/) a do poľa API kľúč vložíte kľúč, ktorý ste si vygenerovali v administrácii e-shopu. Kliknete na Pokračovať.',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Setovanie-napojenia-v-Neoshipe.png',
+        alt: 'Nastavenie napojenia v Neoshipe',
+      },
+      {
+        type: 'text',
+        text: '4. Konektor je nastavený. Cez ikonu pera nastavíte prepravcov, ktorých v rámci Neoshipu využívate alebo budete využívať, a stav objednávky po importe dát do Neoshipu.',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/Nastavenie-napojenia.png',
+        alt: 'Nastavenie prepravcov v napojení',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/mapovanie-prestashop.png',
+        alt: 'Mapovanie prepravcov a stavov objednávok',
+      },
+
+      { type: 'heading', text: 'Tvorba balíkov a štítkov' },
+      {
+        type: 'text',
+        text: 'Postup, ako dotiahnuť dáta z objednávok do Neoshipu a vytlačiť k nim prepravné štítky, si môžete pozrieť v inštruktážnom videu.',
       },
     ],
   },
@@ -625,159 +1086,79 @@ const navodyData: Omit<Navod, 'image' | 'gallery'>[] = [
     title: 'Manuál - Aktivácia pluginu Neoship vo WooCommerce',
     category: 'Manuály - Aktivácia pluginov',
     perex:
-      'Vďaka pluginu Neoship môžu e-shopy hromadne exportovať objednávky do Neoshipu a pre exportované objednávky tlačiť štítky aj preberací protokol.',
+      'Vďaka pluginu Neoship môžu eshopy hromadne exportovať objednávky do Neoshipu a pre exportované objednávky tlačiť štítky aj preberací protokol. Plugin Neoship je voľne dostupný vo WordPress administrácii a jeho aktivácia je podmienená využívaním služieb Neoshipu.',
     blocks: [
+      { type: 'heading', text: 'Aktivácia pluginu Neoship' },
+      { type: 'text', text: '1. Stiahnete a aktivujete si plugin Neoship:' },
       {
-        type: 'steps',
-        title: 'Postup aktivácie',
-        items: [
-          'Stiahnite a aktivujte plugin Neoship z administrácie WordPress.',
-          'Prejdite na Nastavenia → Neoship v administrácii.',
-          'Vyplňte prihlasovacie údaje (Client ID a Client secret od Neoshipu) a uložte zmeny. Pri správnom nastavení sa zobrazí potvrdzujúca hláška o prepojení.',
-          'Nastavte prepravcov cez WooCommerce → Nastavenia → Doprava. Vyberte kuriérske služby, ktoré využívate.',
-          'Pre medzinárodné doručenie nakonfigurujte prepravcov pre zónu Slovensko aj pre zónu zahraničie.',
-          'Pridajte spôsob doručenia a vyberte konkrétneho prepravcu.',
-          'Pomenujte prepravcu a nastavte cenu za prepravu zobrazovanú v košíku.',
-        ],
+        type: 'image',
+        src: '/images/navody/steps/1662534471_Plugin-Neoship.png',
+        alt: 'Stiahnutie a aktivácia pluginu Neoship vo WordPress',
       },
-    ],
-  },
-
-  /* ───────────── Funkcionality v Neoshipe ───────────── */
-  {
-    slug: 'neoship-premium',
-    title: 'Neoship Prémium',
-    category: 'Funkcionality v Neoshipe',
-    perex:
-      'Neoship Prémium je určený pre e-shopy, ktoré chcú zjednodušiť a zautomatizovať expedíciu, doručovať balíky spoľahlivo a rýchlo a získať detailný prehľad o zásielkach aj financiách.',
-    blocks: [
+      { type: 'text', text: '2. Kliknete na Nastavenia → Neoship:' },
       {
-        type: 'text',
-        text: 'S jednou zmluvou, jednou faktúrou a jedným expedičným riešením spravujete viacerých kuriérov z jednej platformy.',
+        type: 'image',
+        src: '/images/navody/steps/Nastavenia-Neoship.png',
+        alt: 'Nastavenia pluginu Neoship',
       },
       {
         type: 'text',
-        text: 'Získate priamy export objednávok a tlač štítkov, prepojenia s e-shopovými aj účtovnými systémami a prehľadné rozhranie na sledovanie doručovania a platieb.',
+        text: '3. Vyplníte Client ID a Client secret (obdržíte ich od nás). Po kliknutí na „Uložiť zmeny“ sa vám musí zobraziť potvrdzujúca hláška „Prihlasovacie údaje sú správne“. V tomto momente je váš e-shop prepojený s Neoshipom.',
       },
-    ],
-  },
-  {
-    slug: 'neoship-verzia-zaklad',
-    title: 'Neoship Základ',
-    category: 'Funkcionality v Neoshipe',
-    perex:
-      'Neoship Základ je expedičné riešenie pre e-shopy, ktoré potrebujú zrýchliť a zautomatizovať expedíciu s využitím vlastných zmlúv s prepravcami.',
-    blocks: [
       {
-        type: 'text',
-        text: 'Riešenie zjednodušuje tvorbu štítkov vďaka prepojeniam s platformami ako SuperFaktúra, PrestaShop a WooCommerce a podporuje hlavné kuriérske spoločnosti.',
+        type: 'image',
+        src: '/images/navody/steps/Prihlasovacie-udaje-su-spravne.png',
+        alt: 'Potvrdzujúca hláška o správnych prihlasovacích údajoch',
       },
       {
         type: 'text',
-        text: 'Získate úsporu času aj nákladov, transparentné sledovanie zásielok a prehľad nevyplatených dobierok – v jednoduchom a prehľadnom rozhraní.',
-      },
-    ],
-  },
-  {
-    slug: 'aplikacia-neoship',
-    title: 'Aplikácia Neoship',
-    category: 'Funkcionality v Neoshipe',
-    perex:
-      'Prehľad o doručených a nedoručených balíkoch všetkých prepravcov, o cene každej zásielky, o vyplatených a nevyplatených dobierkach, vývoj počtu zásielok, komunikácia s prepravcom aj vlastné notifikačné e-maily.',
-    blocks: [
-      {
-        type: 'text',
-        text: 'Aplikácia Neoship zjednodušuje správu zásielok – v jednom rozhraní vytvárate balíky, tlačíte štítky, sledujete doručovanie a párujete platby.',
+        text: '4. V ľavom menu WooCommerce → Nastavenia → Doprava si vyberiete prepravcov, ktorých v rámci služieb Neoship využívate alebo budete využívať a ktorí sa zároveň aktivujú v košíku.',
       },
       {
-        type: 'text',
-        text: 'Integruje sa s účtovnými systémami ako SuperFaktúra aj so systémami ako POHODA, takže expedíciu riešite bez prepínania medzi nástrojmi.',
+        type: 'image',
+        src: '/images/navody/steps/WooCommerce-Nastavenia.png',
+        alt: 'WooCommerce – Nastavenia',
       },
-    ],
-  },
-  {
-    slug: 'statistiky',
-    title: 'Štatistiky',
-    category: 'Funkcionality v Neoshipe',
-    perex:
-      'Vývoj počtu balíkov, najčastejšie posielané váhy, grafy s rozdelením balíkov na adresu a do výdajných miest, doručovanie na Slovensku a v zahraničí, zoznam vrátených balíkov aj ich percentuálny podiel – to všetko nájdete v štatistikách Neoshipu.',
-    blocks: [
+      { type: 'image', src: '/images/navody/steps/Doprava.png', alt: 'Sekcia Doprava vo WooCommerce' },
       {
         type: 'text',
-        text: 'Komplexné sledovanie vyexpedovaných balíkov v čase umožňuje analyzovať, porovnávať a rozhodovať sa o expedícii na základe dát.',
+        text: '5. Ak posielate balíky na Slovensko aj do zahraničia, prepravcov nastavte pre zónu Slovensko a aj pre zónu zahraničie (resp. tak, ako ju máte vytvorenú):',
+      },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1662536965_Zony-dopravy.png',
+        alt: 'Zóny dopravy vo WooCommerce',
       },
       {
         type: 'text',
-        text: 'Prístup k dátam o vratkách vám umožní rýchlo reagovať na rastúci pomer vratiek a prijať nápravné opatrenia.',
-      },
-    ],
-  },
-  {
-    slug: 'email',
-    title: 'Email',
-    category: 'Funkcionality v Neoshipe',
-    perex:
-      'Neoship ponúka tri e-mailové šablóny na tvorbu vlastných textov s interaktívnymi odkazmi a firemnými farbami, a to v piatich jazykoch.',
-    blocks: [
-      {
-        type: 'text',
-        text: 'Na rozdiel od štandardného e-mailu o doručení od prepravcu Neoship umožňuje vytvoriť atraktívnejší e-mail, ktorý slúži ako marketingový nástroj.',
+        text: '6. Cez tlačidlo „Pridať spôsob doručenia“ si vyberiete prepravcu alebo prepravcov, ktorých v rámci Neoship služieb využívate alebo budete využívať:',
       },
       {
-        type: 'text',
-        text: 'Môžete v ňom informovať zákazníka o doručení zásielky, podporiť ďalší predaj, rozšíriť počet sledovateľov na sociálnych sieťach alebo pridať odkazy na akciové ponuky a výpredaje.',
+        type: 'image',
+        src: '/images/navody/steps/1662536991_Pridat-sposob-dorucenia.png',
+        alt: 'Pridať spôsob doručenia',
       },
-    ],
-  },
-  {
-    slug: 'kalkulacia',
-    title: 'Kalkulácia',
-    category: 'Funkcionality v Neoshipe',
-    perex:
-      'Kalkulačka Neoshipu rýchlo vypočíta cenu balíka vybraného prepravcu na základe váhy, spôsobu doručenia a ďalších parametrov – vrátane všetkých doplnkových služieb.',
-    blocks: [
       {
-        type: 'text',
-        text: 'Komplexné cenníky prepravných spoločností sú ťažko čitateľné a často neukazujú finálnu cenu. Dodatočné poplatky za notifikácie, dobierku či spôsob platby výrazne ovplyvňujú konečnú sumu.',
+        type: 'image',
+        src: '/images/navody/steps/1662537008_Vyber-konkretneho-prepravcu.png',
+        alt: 'Výber konkrétneho prepravcu',
+      },
+      { type: 'text', text: '7. V našom prípade sme si vybrali GLS Kuriéra:' },
+      {
+        type: 'image',
+        src: '/images/navody/steps/1662537024-Vyber-GLS-kuriera.png',
+        alt: 'Výber GLS Kuriéra',
       },
       {
         type: 'text',
-        text: 'Neoship ponúka integrované riešenie s jednotnými cenami namiesto riešenia cez jednotlivé kuriérske služby.',
-      },
-    ],
-  },
-  {
-    slug: 'dobierky',
-    title: 'Dobierky',
-    category: 'Funkcionality v Neoshipe',
-    perex:
-      'Neoship poskytuje komplexný prehľad o dobierkach – s vyplatenými aj nevyplatenými zásielkami pracujete v samostatnom zobrazení s viacerými možnosťami filtrovania.',
-    blocks: [
-      {
-        type: 'text',
-        text: 'Vyplatené dobierky: systém centralizuje dáta o všetkých prijatých platbách. Filtrujete podľa prepravcu, krajiny doručenia, dátumu platby, sumy, variabilného symbolu, čísla zásielky, meny aj typu platby. Reporty exportujete v štyroch formátoch – Excel, CSV, XML a SEPA XML.',
+        text: '8. Ľubovoľne si ho môžete nazvať a zároveň mu nastaviť cenu za prepravu, ktorá sa bude zobrazovať zákazníkovi v košíku:',
       },
       {
-        type: 'text',
-        text: 'Nevyplatené dobierky: Neoship sleduje sumy dobierok, ktoré ešte neboli inkasované alebo pripísané na účet, čo pomáha plánovať cashflow aj budúce nákupy.',
+        type: 'image',
+        src: '/images/navody/steps/1662537122_Premenovanie-kuriera.png',
+        alt: 'Premenovanie kuriéra a nastavenie ceny',
       },
-    ],
-  },
-  {
-    slug: 'dashboard',
-    title: 'Dashboard',
-    category: 'Funkcionality v Neoshipe',
-    perex:
-      'Dashboard v Neoshipe je centralizovaný prehľad expedície s informáciami o doručených, nedoručených a zásielkach v preprave od všetkých prepravcov.',
-    blocks: [
-      {
-        type: 'text',
-        text: 'Dashboard zobrazuje tri kategórie balíkov – doručené (zelený box), nedoručené (červený box) a v preprave (oranžový box). Z každého boxu sa presmerujete na konkrétny balík a riešite problémy priamo.',
-      },
-      {
-        type: 'text',
-        text: 'Systém sumarizuje vyplatené dobierky podľa spôsobu platby a meny vrátane prehľadu nevyplatených dobierok. Eliminuje prepínanie medzi systémami viacerých prepravcov a umožňuje rýchlo riešiť situácie s prepravcom skôr, než vzniknú zákaznícke reklamácie.',
-      },
+      { type: 'text', text: 'Po týchto nastaveniach je všetko pripravené na automatizovanú expedíciu.' },
     ],
   },
 
@@ -928,14 +1309,6 @@ const NAVOD_IMAGE: Record<string, string> = {
   'manual-aktivacia-konektora-neoship-pre-shoptet': 'Konektor-Neoship-Shoptet.png',
   'manual-aktivacia-konektora-neoship-pre-prestashop': 'Konektor-Neoship-Prestashop.png',
   'manual-aktivacia-pluginu-neoship-vo-woocommerce': 'Plugin-Neoship-WooCommerce.png',
-  'neoship-premium': 'Neoship-Premium.png',
-  'neoship-verzia-zaklad': 'Neoship-Zaklad-1.png',
-  'aplikacia-neoship': 'Aplikacia-Neoship.png',
-  statistiky: 'statistiky.png',
-  email: 'Email-1.png',
-  kalkulacia: 'Kalkulacia-1.png',
-  dobierky: 'Dobierky-1.png',
-  dashboard: 'Dashboard.png',
   'parovanie-dobierok-s-fakturami-v-moneys3': 'Parovanie-dobierok-s-fakturami-v-MoneyS3.png',
   'parovanie-dobierok-s-fakturami-v-superfakture':
     'Parovanie-dobierok-s-fakturami-v-SuperFakture.png',
@@ -945,105 +1318,6 @@ const NAVOD_IMAGE: Record<string, string> = {
 
 /** Snímky obrazovky použité v jednotlivých návodoch (z neoship.sk), v poradí. */
 const NAVOD_GALLERY: Record<string, string[]> = {
-  'manual-nastavenie-packety-vydajnych-miest-v-shoptete': [
-    '1prepojenie-Packeta.png',
-    '2-Packeta.png',
-    '4-nastavenia-dopravy.png',
-    'Pridat-sposob-dopravy.png',
-    'Komplet-nastavenie.png',
-    '1713446201_5a-nastavenie-ceny-dopravy.png',
-    '1713446225_5b-cena.png',
-    'Zobrazenie-v-kosiku.png',
-    '1713446534_7a-konektor.png',
-    '1713446548_7b-edit-konektor.png',
-    '1713446624_8a-pridat-prepravcu.png',
-    '1713446679_Mapovanie-prepravcov.png',
-  ],
-  'manual-nastavenie-sps-gls-dpd-v-shoptete': [
-    '1-nastavenie.png',
-    '2-neviditelnost.png',
-    '3-vytvorit-dopravu.png',
-    '4-nastavenie-novej-dopravy.png',
-    '5a-nastavenie-ceny-dopravy.png',
-    '5b-cena.png',
-    '6-nastavena-doprava-v-kosiku.png',
-    '7a-konektor.png',
-    '7b-edit-konektor.png',
-    '8a-pridat-prepravcu.png',
-    '8b-nastavenie-prepravcov-v-Neoshipe.png',
-  ],
-  'manual-aktivacia-konektora-neoship-pre-money-s4-money-s5': [
-    'Ikona-konektora.png',
-    'Zoznam-napojeni.png',
-    'Konektor-Money.png',
-    'nastavenia-konektora.png',
-    '1694517539_Mapovanie-prepravcov.png',
-    'import-balikov-z-Money.png',
-    'Objednavky-v-Neoshipe.png',
-    'Oznacene-objednavky-a-prichystane-na-import.png',
-    'Baliky.png',
-    'Priprava-na-tlac.png',
-  ],
-  'manual-aktivacia-balikova-v-doplnku-neoship-pre-shoptet': [
-    'sps-doplnok.png',
-    'Nastavenie-doplnku.png',
-    'nastavenie-moznosti.png',
-    'zobrazovanie-v-kosiku.png',
-    'balikovo-x.png',
-    'ikona-potvrdenia.png',
-    'nastavenia-balikova.png',
-    'Screenshot-from-2023-07-14-13-17-01.png',
-    'editacia.png',
-    'pridat-prepravcu.png',
-    'balikovo-v-eshope.png',
-  ],
-  'manual-aktivacia-konektora-neoship-pre-shoptet': [
-    'Ikona-konektora.png',
-    'Zoznam-napojeni.png',
-    '1662373810_Nove-napojenie-Shoptet.png',
-    'Doplnok-Neoship-v-Shoptete.png',
-    'Uspesna-instalacia-doplnku-Neoship-v-Shoptete.png',
-    'API-kluc-v-Neoshipe.png',
-    'Pridanie-prepravcov.png',
-    '1683787860_Nastavenie-konektora-v-Neoshipe.png',
-    'Kliknutie-na-zoznam-objednavok.png',
-    'Objednavky-v-Neoshipe.png',
-    'Oznacene-objednavky-a-prichystane-na-import.png',
-    'Baliky.png',
-    'Priprava-na-tlac.png',
-  ],
-  'manual-aktivacia-konektora-neoship-pre-prestashop': [
-    'Nahrat-modul.png',
-    'nahrat-modul-b.png',
-    'Neoship-modul.png',
-    'pridat-novy-webservice-kluc.png',
-    '1663140881_Setovanie-API-kluca.png',
-    '1.png',
-    '2.png',
-    '3.png',
-    '4-Neoship.png',
-    '5.png',
-    '6.png',
-    'Vygenerovanie-API-kluca.png',
-    'API-kluc.png',
-    '1662380612_Ikona-konektora.png',
-    '1662380647_Zoznam-napojeni.png',
-    'Setovanie-napojenia-v-Neoshipe.png',
-    'Nastavenie-napojenia.png',
-    'mapovanie-prestashop.png',
-  ],
-  'manual-aktivacia-pluginu-neoship-vo-woocommerce': [
-    '1662534471_Plugin-Neoship.png',
-    'Nastavenia-Neoship.png',
-    'Prihlasovacie-udaje-su-spravne.png',
-    'WooCommerce-Nastavenia.png',
-    'Doprava.png',
-    '1662536965_Zony-dopravy.png',
-    '1662536991_Pridat-sposob-dorucenia.png',
-    '1662537008_Vyber-konkretneho-prepravcu.png',
-    '1662537024-Vyber-GLS-kuriera.png',
-    '1662537122_Premenovanie-kuriera.png',
-  ],
   'parovanie-dobierok-s-fakturami-v-moneys3': [
     '1663141359_Zoznam-vyplatenych-dobierok.png',
     '1663141398_Filter-vyplatenych-dobierok.png',
