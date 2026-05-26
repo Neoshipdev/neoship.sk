@@ -46,8 +46,7 @@ export default function Page() {
       {/* Otvorené pozície – empty state */}
       <section className="py-16 md:py-20 bg-white">
         <Container className="max-w-3xl">
-          <p className="eyebrow">Otvorené pozície</p>
-          <h2 className="mt-3 heading-2 text-ink">Aktuálne nemáme otvorené žiadne voľné pozície</h2>
+          <h2 className="heading-2 text-ink">Aktuálne nemáme otvorené žiadne voľné pozície</h2>
           <p className="mt-5 body-lg">
             Nenechaj sa ale odradiť — ak máš záujem u nás pracovať, neváhaj a pošli životopis. Radi
             si ho prečítame a ozveme sa, hneď ako sa otvorí vhodná príležitosť.

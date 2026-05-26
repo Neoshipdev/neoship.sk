@@ -136,25 +136,31 @@ function TestimonialCard({
   company,
   url,
   logo,
+  logoLarge,
 }: {
   quote: string;
   author: string;
   company: string;
   url: string;
   logo?: string;
+  logoLarge?: boolean;
 }) {
   return (
     <article className="h-full rounded-2xl bg-white border border-line p-7 shadow-soft flex flex-col">
       <div className="flex items-start justify-between gap-4">
         <Quote className="w-8 h-8 text-brand-orange-100 fill-brand-orange-50 shrink-0" />
         {logo && (
-          <div className="relative h-10 w-28 shrink-0">
+          <div
+            className={
+              logoLarge ? 'relative h-16 w-44 shrink-0' : 'relative h-10 w-28 shrink-0'
+            }
+          >
             <Image
               src={logo}
               alt={`${company} logo`}
               fill
               unoptimized
-              sizes="112px"
+              sizes={logoLarge ? '176px' : '112px'}
               className="object-contain object-right"
             />
           </div>

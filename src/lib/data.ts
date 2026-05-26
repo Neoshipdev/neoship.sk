@@ -107,7 +107,7 @@ export const navigation: NavItem[] = [
     label: 'Spoločnosť',
     links: [
       { label: 'O firme', href: '/o-nas' },
-      { label: 'Kariéra', href: '/kariera', badge: '3' },
+      { label: 'Kariéra', href: '/kariera', badge: '0' },
       { label: 'Referencie', href: '/referencie' },
       { label: 'Kontakt', href: '/kontakt' },
     ],
@@ -296,6 +296,8 @@ export type Testimonial = {
   url: string;
   /** Voliteľné logo e-shopu (uložené v public/images/testimonials/). */
   logo?: string;
+  /** Voliteľné zväčšenie loga (pre logá, ktoré sú v štandardnej veľkosti príliš malé). */
+  logoLarge?: boolean;
 };
 
 import testimonialQuotes from './testimonials-quotes.json';
@@ -372,6 +374,7 @@ export const testimonials: Testimonial[] = [
     company: 'Panta Rhei',
     url: 'https://www.pantarhei.sk',
     logo: '/images/testimonials/pantarhei.png',
+    logoLarge: true,
   },
 ];
 
