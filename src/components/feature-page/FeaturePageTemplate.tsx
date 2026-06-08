@@ -23,11 +23,13 @@ export function FeaturePageTemplate({ data }: { data: FeaturePage }) {
 
       <FeatureHero data={data} />
 
-      <section className="py-14 md:py-20 bg-white">
-        <Container>
-          <p className="text-xl md:text-2xl text-ink leading-relaxed max-w-4xl">{data.lead}</p>
-        </Container>
-      </section>
+      {data.lead && (
+        <section className="py-14 md:py-20 bg-white">
+          <Container>
+            <p className="text-xl md:text-2xl text-ink leading-relaxed max-w-4xl">{data.lead}</p>
+          </Container>
+        </section>
+      )}
 
       <section className="py-10 md:py-16 bg-white">
         <Container>

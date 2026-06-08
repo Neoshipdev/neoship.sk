@@ -54,7 +54,7 @@ export const mainServices: NavLink[] = [
 
 export const functionalityLinks: NavLink[] = [
   {
-    label: 'Prepojenia a tvorba balíkov',
+    label: 'Napojenia e-shopových a ERP systémov',
     href: '/sluzby/prepojenia-a-tvorba-balikov',
     description: 'Pluginy pre Shoptet, WooCommerce, Pohoda',
     icon: Cable,
@@ -222,7 +222,7 @@ export type PlanCategory = {
 
 export const planComparison: PlanCategory[] = [
   {
-    title: 'Prepojenia a tvorba balíkov',
+    title: 'Napojenia e-shopových a ERP systémov',
     rows: [
       {
         label: 'Jedno prepojenie bez ohľadu na počet využívaných prepravcov',
@@ -354,7 +354,12 @@ const TESTIMONIAL_META: Record<string, { url: string; logo: string }> = {
   },
 };
 
-const fromNeoship: Testimonial[] = EXTRACTED.map((e) => {
+/** Spoločnosti, ktorých recenzie na homepage nezobrazujeme. */
+const TESTIMONIAL_HIDDEN = new Set(['autodielygafa.sk', 'kuchynovo.sk']);
+
+const fromNeoship: Testimonial[] = EXTRACTED.filter(
+  (e) => !TESTIMONIAL_HIDDEN.has(e.company),
+).map((e) => {
   const meta = TESTIMONIAL_META[e.company];
   return {
     quote: e.quote,
@@ -382,7 +387,7 @@ export const testimonials: Testimonial[] = [
 
 export const homeFunctionalityCards = [
   {
-    title: 'Prepojenia a tvorba balíkov',
+    title: 'Napojenia e-shopových a ERP systémov',
     description:
       'Hotové integrácie pre Shoptet, WooCommerce, PrestaShop a SuperFaktúru. Jedna integrácia, všetci prepravcovia.',
     href: '/sluzby/prepojenia-a-tvorba-balikov',
@@ -421,24 +426,6 @@ export const homeFunctionalityCards = [
 /* ───────────────────────── Footer links ───────────────────────── */
 
 export const footerColumns = [
-  {
-    title: 'Služby',
-    links: [
-      { label: 'Kuriérske služby a obstaranie prepravy', href: '/sluzby/kurierske-sluzby' },
-      { label: 'Hromadná tvorba balíkov', href: '/sluzby/hromadna-tvorba-balikov' },
-      { label: 'Expedičný systém Neoship', href: '/sluzby/expedicny-system-neoship' },
-    ],
-  },
-  {
-    title: 'Funkcionality',
-    links: [
-      { label: 'Prepojenia a tvorba balíkov', href: '/sluzby/prepojenia-a-tvorba-balikov' },
-      { label: 'Prehľad o balíkoch', href: '/sluzby/prehlad-o-balikoch' },
-      { label: 'Prehľad o financiách', href: '/sluzby/prehlad-o-financiach' },
-      { label: 'Párovanie dobierok', href: '/sluzby/parovanie-dobierok' },
-      { label: 'Štatistiky', href: '/sluzby/statistiky' },
-    ],
-  },
   {
     title: 'Podpora',
     links: [

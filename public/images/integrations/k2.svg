@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="65.52" height="28.907" viewBox="0 0 65.52 28.907">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #004a99;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <g id="k2_logo" transform="translate(-151.925 -163.467)">
+    <g id="Group_10" data-name="Group 10" transform="translate(151.925 163.991)">
+      <path id="Path_4" data-name="Path 4" class="cls-1" d="M165.068,181.167V166.99h.139l8.449,14.177h14.175l-10.167-15.213,9.773-13.17H174.016l-8.808,12.968h-.139V152.784H151.925v28.383Z" transform="translate(-151.925 -152.784)"/>
+    </g>
+    <g id="Group_11" data-name="Group 11" transform="translate(189.255 163.467)">
+      <path id="Path_5" data-name="Path 5" class="cls-1" d="M459.37,172.107c5.99-3.755,13.039-9.024,13.039-13.017,0-2.035-1.832-3.674-5.425-3.674A15.125,15.125,0,0,0,460,157.252v-7.187a51.106,51.106,0,0,1,12.265-1.6c10.006,0,14.373,4.273,14.373,8.587,0,5.309-5.5,9.462-10.641,13.135H487.56v7.185H459.37" transform="translate(-459.37 -148.467)"/>
+    </g>
+  </g>
+</svg>

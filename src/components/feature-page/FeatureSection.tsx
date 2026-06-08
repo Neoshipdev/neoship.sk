@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { cn } from '@/lib/cn';
@@ -22,6 +23,58 @@ export function FeatureSection({
   section: FeatureSectionContent;
   index: number;
 }) {
+  const hasLogos = section.logos && section.logos.length > 0;
+
+  // Full-width layout pre sekciu so zoznamom lôg (integrácie) – bez číslovania, väčšie logá
+  if (hasLogos) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.55 }}
+      >
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-ink">{section.h2}</h2>
+        <p className="mt-4 body-lg max-w-3xl">{section.body}</p>
+
+        <ul className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
+          {section.logos!.map((logo) => (
+            <li
+              key={logo.name}
+              className={cn(
+                'group rounded-2xl bg-white border border-line p-6 flex flex-col items-center justify-center text-center min-h-[200px] hover:border-brand-orange hover:shadow-soft transition-all',
+                logo.dimmed && 'opacity-50 grayscale hover:opacity-100 hover:grayscale-0',
+              )}
+            >
+              {logo.src ? (
+                <div
+                  className="relative w-full h-24 md:h-28 flex items-center justify-center"
+                  style={logo.scale ? { transform: `scale(${logo.scale})` } : undefined}
+                >
+                  <Image
+                    src={logo.src}
+                    alt={`${logo.name} logo`}
+                    fill
+                    unoptimized
+                    sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 220px"
+                    className="object-contain"
+                  />
+                </div>
+              ) : (
+                <div className="w-full h-24 md:h-28 flex items-center justify-center">
+                  <span className="text-4xl md:text-5xl font-black text-brand-orange/40">
+                    {logo.name.charAt(0)}
+                  </span>
+                </div>
+              )}
+              <span className="mt-4 text-sm font-bold text-ink leading-tight">{logo.name}</span>
+            </li>
+          ))}
+        </ul>
+      </motion.div>
+    );
+  }
+
   const reverse = index % 2 === 1;
   const visual = visuals[index % visuals.length];
 

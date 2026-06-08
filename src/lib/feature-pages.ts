@@ -12,10 +12,22 @@
 
 export type FeatureBullet = string;
 
+export type FeatureLogo = {
+  name: string;
+  /** Voliteľný obrázok loga (uložený v public/images/integrations/). Bez neho sa zobrazí len názov. */
+  src?: string;
+  /** Voliteľný škálovací faktor pre logo (default 1). Použite napr. 0.7 na zmenšenie, 1.2 na zväčšenie. */
+  scale?: number;
+  /** Ak true, karta sa zobrazí jemne zafedovaná (znížená opacita + grayscale). */
+  dimmed?: boolean;
+};
+
 export type FeatureSectionContent = {
   h2: string;
   body: string;
   bullets?: FeatureBullet[];
+  /** Voliteľný zoznam lôg na vykreslenie ako grid (namiesto bulletov). */
+  logos?: FeatureLogo[];
 };
 
 export type FeatureBenefit = {
@@ -90,62 +102,92 @@ export type FeaturePage = {
 
 const prepojeniaATvorbaBalikov: FeaturePage = {
   slug: 'prepojenia-a-tvorba-balikov',
-  breadcrumbLabel: 'Prepojenia a tvorba balíkov',
+  breadcrumbLabel: 'Napojenia e-shopových a ERP systémov',
   metadata: {
-    title: 'Prepojenia a tvorba balíkov pre e-shop | Neoship',
+    title: 'Napojenia e-shopových a ERP systémov | Neoship',
     description:
-      'Prepojte Neoship s vaším e-shopom alebo fakturačným systémom. Hotové integrácie pre Shoptet, WooCommerce, PrestaShop, SuperFaktúra, Pohoda. Hromadná tvorba balíkov cez API alebo importy.',
+      'Napojte Neoship na svoj e-shop alebo ERP. Hotové integrácie pre Shoptet, WooCommerce, Shopify, PrestaShop, Magento, POHODA, Money, SAP, Microsoft Dynamics a ďalšie.',
     keywords: [
-      'prepojenie e-shopu',
+      'napojenie e-shopu',
+      'napojenie ERP systému',
       'integrácia kuriérskej služby',
       'API pre dopravcov',
       'hromadná tvorba balíkov',
       'plugin Shoptet',
       'plugin WooCommerce',
       'plugin PrestaShop',
+      'integrácia POHODA',
+      'integrácia SAP',
     ],
   },
   hero: {
     eyebrow: 'Funkcionalita expedičného systému',
-    h1: 'Prepojenia a tvorba balíkov pre váš e-shop',
+    h1: 'Napojenia e-shopových a ERP systémov',
     sub: 'Jedna integrácia, neobmedzené možnosti. Napojte Neoship na svoj e-shop alebo fakturačný systém a získajte rýchlu, pohodlnú a bezstarostnú tvorbu balíkov – bez ohľadu na to, koľko kuriérskych spoločností využívate dnes alebo budete využívať v budúcnosti.',
     primaryCta: { label: 'Chcem prepojenie', openModal: 'contact' },
     secondaryCta: { label: 'Pozrieť API dokumentáciu', href: 'https://doc.apiserver.neoship.sk' },
   },
-  lead: 'Tvorba balíkov je jedna z najčastejších a najopakovanejších činností v každom e-shope. Ak ju musíte robiť ručne pre každú zásielku zvlášť, denne stratíte hodiny času. Neoship to mení – stačí jedno prepojenie s vaším e-shopom alebo fakturačným systémom a tvorba balíkov sa stáva otázkou pár klikov. A to nezávisle od toho, či využívate jedného alebo piatich prepravcov.',
+  lead: '',
   sections: [
     {
-      h2: 'Rýchle a pohodlné napojenia bez zdĺhavej integrácie',
-      body: 'Zabudnite na týždne strávené implementáciou API a tisícky eur za vývojárov. Naše hotové pluginy aktivujete za pár minút a s ich nastavením vám radi pomôžeme. Bez ohľadu na to, či máte e-shop na hotovej platforme alebo využívate špecializovaný fakturačný systém, máme pre vás riešenie pripravené na nasadenie ešte dnes.',
-    },
-    {
-      h2: 'Hotové integrácie pre obľúbené slovenské a české platformy',
-      body: 'Neoship má pripravené natívne prepojenia s najpoužívanejšími e-shopovými a fakturačnými systémami na trhu. Pre každú integráciu máme pripravený video návod, ktorý vás krok za krokom prevedie nastavením.',
-      bullets: [
-        'Shoptet – priame prepojenie cez API, export objednávok a tlač štítkov priamo v admine',
-        'PrestaShop – plugin s podporou všetkých kuriérskych spoločností v Neoshipe',
-        'WooCommerce – plugin pre WordPress s automatizovaným odosielaním zásielok',
-        'SuperFaktúra – párovanie zásielok s faktúrami a automatické vyúčtovanie dobierok',
-        'POHODA – integrácia obľúbeného účtovného systému s expedíciou na pár klikov',
-        'NEONUS – prepojenie administračného systému s Neoshipom',
-        'CREATIVE sites – natívna integrácia pre platformu',
+      h2: 'Prepojenia e-shopových systémov',
+      body: 'Neoship má pripravené natívne napojenia s najpoužívanejšími e-shopovými platformami na slovenskom a českom trhu. Stačí si vybrať, na ktorej platforme funguje váš e-shop, a integráciu aktivujete za pár minút.',
+      logos: [
+        { name: 'WooCommerce', src: '/images/integrations/woocommerce.svg' },
+        { name: 'Shoptet', src: '/images/integrations/shoptet.svg' },
+        { name: 'Shopify', src: '/images/integrations/shopify.svg' },
+        { name: 'OpenCart', src: '/images/integrations/opencart.svg' },
+        { name: 'PrestaShop', src: '/images/integrations/prestashop.svg' },
+        { name: 'Webareal', src: '/images/integrations/webareal.png' },
+        { name: 'CREATIVE sites', src: '/images/integrations/creativesites.png' },
+        { name: 'Blueweb', src: '/images/integrations/blueweb.svg', scale: 0.75, dimmed: true },
+        { name: 'Smartbase', src: '/images/integrations/smartbase.png', scale: 1.25 },
+        { name: 'NEONUS', src: '/images/integrations/neonus.png' },
+        { name: 'BiznisWeb', src: '/images/integrations/biznisweb.png' },
+        { name: 'Upgates', src: '/images/integrations/upgates.svg' },
+        { name: 'Eshop-rychle', src: '/images/integrations/eshop-rychle.svg', dimmed: true },
+        { name: 'ClickEshop', src: '/images/integrations/clickeshop.png' },
+        { name: 'Magento', src: '/images/integrations/magento.svg', dimmed: true },
       ],
     },
     {
-      h2: 'Jedna integrácia pre všetkých prepravcov',
-      body: 'Najväčšia výhoda Neoshipu? Jedným prepojením vyriešite napojenie všetkých kuriérskych spoločností naraz. Ak sa rozhodnete pre nového dopravcu alebo zmeníte aktuálneho, nemusíte robiť žiadne nové vývojárske úpravy. Stačí prepnúť prepravcu v Neoshipe a všetko funguje ďalej – bez prestojov, bez dodatočných nákladov.',
+      h2: 'Napojenia ERP a fakturačných systémov',
+      body: 'Pripájame sa aj na hlavné ERP a fakturačné systémy používané slovenskými a českými firmami. Vďaka tomu sa balíky vytvárajú priamo z dát, ktoré už máte v účtovníctve – bez duplicitného prepisovania.',
+      logos: [
+        { name: 'ABRA Gen', src: '/images/integrations/abra.svg' },
+        { name: 'ABRA Flexi (FlexiBee)', src: '/images/integrations/abra.svg' },
+        { name: 'Helios', src: '/images/integrations/helios.svg', dimmed: true },
+        { name: 'K2', src: '/images/integrations/k2.svg', scale: 0.65, dimmed: true },
+        { name: 'KARAT', src: '/images/integrations/karat.svg', dimmed: true },
+        { name: 'Money S3', src: '/images/integrations/moneys3.svg', dimmed: true },
+        { name: 'Money S4', src: '/images/integrations/money.svg', dimmed: true },
+        { name: 'Money S5', src: '/images/integrations/money.svg', dimmed: true },
+        { name: 'Odoo', src: '/images/integrations/odoo.png', dimmed: true },
+        { name: 'POHODA', src: '/images/integrations/pohoda.svg' },
+        { name: 'SAP Business One', src: '/images/integrations/sap-business-one.svg', dimmed: true },
+        { name: 'SAP S/4HANA', src: '/images/integrations/saps4hana.png', dimmed: true },
+        { name: 'SuperFaktúra', src: '/images/integrations/superfaktura.svg' },
+        { name: 'AnSystems', src: '/images/integrations/ansystems.png', dimmed: true },
+        { name: 'KROS', src: '/images/integrations/kros.png', dimmed: true },
+        { name: 'OBERON', src: '/images/integrations/oberon.png' },
+        { name: 'Microsoft Dynamics', src: '/images/integrations/microsoft-dynamics.png', dimmed: true },
+      ],
     },
     {
-      h2: 'Široké možnosti individuálneho napojenia cez API',
-      body: 'Máte vlastný e-shop, ERP systém alebo zákazkový softvér? Naša otvorená REST API dokumentácia (doc.apiserver.neoship.sk) vám umožní vytvoriť napojenie presne na mieru. API podporuje tvorbu balíkov, generovanie štítkov, sledovanie zásielok, správu dobierok aj reklamácií. Pre vývojárov máme pripravené príklady volaní v najpoužívanejších jazykoch.',
-    },
-    {
-      h2: 'Podpora exportovaných súborov (.csv, .xml, .txt)',
-      body: 'Ak váš systém neumožňuje napojenie cez API, môžete balíky vytvárať aj cez import a export súborov vo formátoch .csv, .xml a .txt. Najlepšia správa? Súbory, ktoré používate u vášho aktuálneho prepravcu, môžete naďalej využívať aj po prechode na Neoship. Bez prepisovania, bez nutnosti meniť procesy. Náš systém automaticky rozpozná štruktúru a zásielky vytvorí presne tak, ako ste zvyknutí.',
-    },
-    {
-      h2: 'Hromadná tvorba balíkov – stovky zásielok za sekundy',
-      body: 'Namiesto klikania na každý balík zvlášť môžete vytvoriť celú dennú dávku zásielok jedným kliknutím. Vyberte všetky aktuálne objednávky, potvrďte a Neoship vygeneruje všetky štítky naraz – pripravené na tlač buď ako PDF, alebo priamo na termálnu tlačiareň.',
+      h2: 'Napojenia na dopravcov',
+      body: 'Pre slovenský aj český trh máme priame napojenie na hlavných kuriérskych prepravcov, Slovenskú poštu aj paletových dopravcov pre väčšie a ťažšie zásielky.',
+      logos: [
+        { name: 'Packeta / Zásilkovna', src: '/images/carriers/packeta.svg' },
+        { name: 'GLS', src: '/images/carriers/gls.svg' },
+        { name: 'DPD', src: '/images/carriers/dpd.svg' },
+        { name: 'SPS', src: '/images/carriers/sps.svg' },
+        { name: 'PPL', src: '/images/carriers/ppl.svg', dimmed: true },
+        { name: 'Slovenská pošta', src: '/images/carriers/slovenska-posta.svg' },
+        { name: 'Česká pošta', src: '/images/carriers/ceska-posta.svg', dimmed: true },
+        { name: 'SDS', src: '/images/carriers/sds.svg' },
+        { name: 'GEIS', src: '/images/carriers/geis.svg', dimmed: true },
+        { name: 'TopTrans', src: '/images/carriers/toptrans.png', dimmed: true },
+      ],
     },
   ],
   benefits: {
@@ -223,7 +265,7 @@ const prepojeniaATvorbaBalikov: FeaturePage = {
     {
       question: 'Funguje Neoship s mojím e-shopom?',
       answer:
-        'Máme integrácie pre Shoptet, PrestaShop, WooCommerce, SuperFaktúru, Pohodu, NEONUS, CREATIVE sites. Ak váš systém nie je v zozname, pomôžeme s napojením cez API alebo cez import súborov.',
+        'Máme integrácie pre Shoptet, PrestaShop, WooCommerce, SuperFaktúru, Pohodu, NEONUS, CREATIVE sites, Smartbase, Upgates a postupne dopĺňame stále nové integrácie. Ak pre váš systém ešte nemáme natívne napojenie, pomôžeme s napojením cez API alebo cez import súborov.',
     },
     {
       question: 'Môžem využívať viacero prepravcov súčasne?',
