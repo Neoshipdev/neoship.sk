@@ -89,9 +89,9 @@ export function Footer() {
           </div>
 
           <div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-10 lg:flex lg:flex-wrap lg:justify-between lg:gap-x-10">
               {footerColumns.map((col) => (
-                <div key={col.title}>
+                <div key={col.title} className="min-w-0">
                   <p className="text-sm font-bold uppercase tracking-wider text-brand-orange-100">
                     {col.title}
                   </p>
@@ -100,7 +100,7 @@ export function Footer() {
                       <li key={link.href}>
                         <Link
                           href={link.href}
-                          className="text-sm text-white/75 hover:text-white transition-colors"
+                          className="text-sm text-white/75 hover:text-white transition-colors whitespace-nowrap"
                         >
                           {link.label}
                         </Link>

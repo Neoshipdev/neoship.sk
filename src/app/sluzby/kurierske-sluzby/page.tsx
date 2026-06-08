@@ -49,6 +49,11 @@ const carriers = [
 
 const advantages = [
   {
+    image: '/images/obstaranie.png',
+    title: 'Obstaráme prepravu za vás',
+    text: 'Nemusíte obvolávať kuriérske spoločnosti, porovnávať zmluvné podmienky ani čakať na individuálne schvaľovanie spolupráce. V balíku Prémium za vás Neoship obstará prepravu cez svojich zmluvných dopravcov a vy môžete zásielky expedovať priamo z jedného systému.',
+  },
+  {
     image: '/images/13.png',
     title: 'Všetci prepravcovia na jednom mieste',
     text: 'Využite služby, kvalitu a výhody jednej alebo viacerých kuriérskych spoločností pod jednou strechou. Bez zbytočných zmlúv s jednotlivými prepravcami. Všetko vybavíme my. Ak nebudete spokojný s niektorým prepravcom, pohodlne a rýchlo ho môžete vymeniť.',
@@ -86,14 +91,14 @@ export default function Page() {
         items={[
           { label: 'Domov', href: '/' },
           { label: 'Služby', href: '/#sluzby' },
-          { label: 'Kuriérske služby', href: '/sluzby/kurierske-sluzby' },
+          { label: 'Kuriérske služby a obstaranie prepravy', href: '/sluzby/kurierske-sluzby' },
         ]}
       />
 
       <PageHero
         eyebrow="Hlavná služba"
-        title="Kuriérske služby pod jednou strechou"
-        subtitle="SPS, GLS, Packeta, Slovenská pošta, SDS a DPD v jednom expedičnom systéme. Vyberte si Prémium bez zmlúv, alebo Základ s vlastnými dohodami s prepravcami."
+        title="Kuriérske služby a obstaranie prepravy pod jednou strechou"
+        subtitle="Neoship za vás obstará prepravu u zmluvných prepravcov a sprístupní vám kuriérske služby v jednom expedičnom systéme. V balíku Prémium môžete posielať zásielky cez SPS, GLS, Packetu, Slovenskú poštu a SDS bez toho, aby ste museli samostatne riešiť zmluvy, registrácie alebo administratívu s jednotlivými dopravcami."
         image={{
           src: '/images/dopravci.png',
           alt: 'Vyberte si svoju kuriérsku spoločnosť – SPS, GLS, Packeta, Slovenská pošta, DPD',
@@ -101,15 +106,13 @@ export default function Page() {
       >
         <div className="max-w-2xl space-y-4 text-base md:text-lg leading-relaxed text-muted">
           <p>
-            Vo verzii Prémium pre vás obstaráme prepravu balíkov prostredníctvom našich
-            partnerských kuriérskych spoločností (SPS, GLS, Packeta, Slovenská pošta, SDS).
-            Podpisovanie
-            zmluvy so žiadnou z nich nie je potrebné.
-          </p>
-          <p>
             Vo verzii Základ máte samostatne uzavreté zmluvy s kuriérskymi spoločnosťami (SPS, GLS,
             Packeta, Slovenská pošta, DPD). Pre všetky z nich poskytneme rýchlu a pohodlnú tlač
             štítkov.
+          </p>
+          <p>
+            Vy sa venujete objednávkam, my riešime prepravu, napojenie dopravcov, tlač štítkov aj
+            prehľad o zásielkach.
           </p>
         </div>
         <div className="mt-8 flex flex-wrap gap-3">

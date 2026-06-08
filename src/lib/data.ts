@@ -33,7 +33,7 @@ export type NavItem =
 
 export const mainServices: NavLink[] = [
   {
-    label: 'Kuriérske služby',
+    label: 'Kuriérske služby a obstaranie prepravy',
     href: '/sluzby/kurierske-sluzby',
     description: 'SPS, GLS, Packeta, Slovenská pošta, DPD, SDS pod jednou strechou',
     icon: Truck,
@@ -157,15 +157,15 @@ export type ServiceTab = {
 export const serviceTabs: ServiceTab[] = [
   {
     id: 'kurierske',
-    title: 'Kuriérske služby',
+    title: 'Kuriérske služby a obstaranie prepravy',
     icon: Truck,
     intro:
-      'Partnerské kuriérske spoločnosti SPS, GLS, Packeta, Slovenská pošta a SDS dostupné okamžite cez Prémium balík, alebo vlastné zmluvy s DPD, SPS, GLS, Packetou a Slovenskou poštou cez Základ.',
+      'Neoship za vás obstará prepravu u všetkých zmluvných prepravcov. Aktuálne spolupracujeme s SPS, Packetou, Slovenskou poštou, GLS a SDS a priebežne pridávame ďalších partnerov. Zmluvy s dopravcami nemusíte riešiť samostatne – nechajte napojenie aj administratívu na nás.',
     bullets: [
-      'SPS, GLS, Packeta, Slovenská pošta, SDS okamžite – bez vlastných zmlúv (Prémium)',
-      'Vlastné zmluvy s DPD, SPS, GLS, Packeta, Slovenská pošta (Základ)',
-      'Doručenie na Slovensku aj do zahraničia',
-      'Doručenie na adresu aj do výdajných miest',
+      'SPS, Packeta, Slovenská pošta, GLS a SDS okamžite – bez vlastných zmlúv',
+      'Obstaranie prepravy cez zmluvných prepravcov Neoshipu',
+      'Doručenie na Slovensko aj do zahraničia',
+      'Doručenie na adresu, do výdajných miest aj boxov',
     ],
     cta: { label: 'Pozrieť kuriérske služby', href: '/sluzby/kurierske-sluzby' },
     image: {
@@ -424,7 +424,7 @@ export const footerColumns = [
   {
     title: 'Služby',
     links: [
-      { label: 'Kuriérske služby', href: '/sluzby/kurierske-sluzby' },
+      { label: 'Kuriérske služby a obstaranie prepravy', href: '/sluzby/kurierske-sluzby' },
       { label: 'Hromadná tvorba balíkov', href: '/sluzby/hromadna-tvorba-balikov' },
       { label: 'Expedičný systém Neoship', href: '/sluzby/expedicny-system-neoship' },
     ],
