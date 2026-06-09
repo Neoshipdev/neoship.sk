@@ -1,3 +1,6 @@
+/** Logické sekcie blogu, do ktorých sa každý príspevok zaraďuje. */
+export type BlogSection = 'clanky' | 'vzdelavacka' | 'case-studies';
+
 export type BlogPost = {
   slug: string;
   title: string;
@@ -11,9 +14,31 @@ export type BlogPost = {
   sourceUrl?: string;
   /** Voliteľná YouTube embed URL pre video vložené priamo v článku. */
   video?: string;
+  /** Sekcia, do ktorej príspevok patrí (odvodené v enrichment kroku). */
+  section: BlogSection;
 };
 
-const blogPostsData: Omit<BlogPost, 'image' | 'sourceUrl'>[] = [
+/**
+ * Mapovanie post -> sekcia. Najprv podľa kategórie, potom slug heuristika
+ * (články s "pripadova-studia" v slugu sú case studies).
+ */
+export function deriveBlogSection(post: Pick<BlogPost, 'slug' | 'category'>): BlogSection {
+  if (post.category === 'Vzdelávačka s Neoshipom') return 'vzdelavacka';
+  if (post.category === 'Prípadové štúdie') return 'case-studies';
+  if (post.slug.includes('pripadova-studia') || post.slug.includes('case-study')) {
+    return 'case-studies';
+  }
+  return 'clanky';
+}
+
+/** Metadáta pre jednotlivé sekcie blogu – label + URL hodnota. */
+export const BLOG_SECTIONS: Array<{ key: BlogSection; label: string }> = [
+  { key: 'clanky', label: 'Články' },
+  { key: 'vzdelavacka', label: 'Vzdelávačka' },
+  { key: 'case-studies', label: 'Case studies' },
+];
+
+const blogPostsData: Omit<BlogPost, 'image' | 'sourceUrl' | 'video' | 'section'>[] = [
   {
     slug: 'ako-znizit-pomer-vratiek',
     title: 'Ako znížiť pomer vratiek vo vašom e-shope o 30 %',
@@ -1270,13 +1295,14 @@ const BLOG_VIDEO: Record<string, string> = {
   'rozhovor-pre-ecommerce-bridge': 'HHQtwdMQX_w',
 };
 
-/** Príspevky obohatené o cover image, plné telo a YouTube video (kde existuje). */
+/** Príspevky obohatené o cover image, plné telo, YouTube video a sekciu. */
 export const blogPosts: BlogPost[] = blogPostsData.map((p) => {
   const file = BLOG_IMAGE[p.slug];
   const fullBody = BODIES[p.slug];
   const videoId = BLOG_VIDEO[p.slug];
   return {
     ...p,
+    section: deriveBlogSection(p),
     ...(fullBody ? { body: fullBody } : {}),
     ...(file ? { image: `/images/blog/${file}` } : {}),
     ...(videoId ? { video: `https://www.youtube-nocookie.com/embed/${videoId}` } : {}),

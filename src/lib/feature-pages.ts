@@ -28,6 +28,8 @@ export type FeatureSectionContent = {
   bullets?: FeatureBullet[];
   /** Voliteľný zoznam lôg na vykreslenie ako grid (namiesto bulletov). */
   logos?: FeatureLogo[];
+  /** Voliteľný obrázok pre 50/50 layout (nahradí farebný číselný blok). */
+  image?: { src: string; alt: string };
 };
 
 export type FeatureBenefit = {
@@ -94,6 +96,13 @@ export type FeaturePage = {
     subtitle?: string;
     buttonLabel: string;
   };
+  /**
+   * Ak true, sekcie s `body` (bez obrázka) sa zobrazia ako full-width text bloky
+   * zarovnané vľavo – bez farebného číselného placeholderu vpravo.
+   */
+  textOnlySections?: boolean;
+  /** Voliteľný obrázok, ktorý sa zobrazí nad lead textom (pod hero sekciou). */
+  leadImage?: { src: string; alt: string };
 };
 
 /* ────────────────────────────────────────────────────────────────
@@ -331,6 +340,10 @@ const prehladOBalikoch: FeaturePage = {
     {
       h2: 'Všetky balíky všetkých prepravcov na jednom mieste',
       body: 'Neoship agreguje dáta zo SPS, GLS, Packety, DPD aj ďalších prepravcov a zobrazuje ich v jednotnom prehľadnom rozhraní. Bez prepínania medzi systémami, bez prihlasovania do desiatich portálov. Filtrujte podľa prepravcu, krajiny doručenia, stavu zásielky, dátumu odoslania alebo čísla objednávky.',
+      image: {
+        src: '/images/prehlad_o_balikoch_1.png',
+        alt: 'Prehľad balíkov všetkých prepravcov v jednom rozhraní Neoship',
+      },
     },
     {
       h2: 'Detailné sledovanie každej zásielky',
@@ -342,26 +355,42 @@ const prehladOBalikoch: FeaturePage = {
         'Údaje o dobierke (ak je súčasťou)',
         'Históriu komunikácie s prepravcom',
       ],
+      image: {
+        src: '/images/prehlad_o_balikoch_2.png',
+        alt: 'Detailné sledovanie zásielky s históriou pohybu',
+      },
     },
     {
       h2: 'Nedoručené balíky – rýchle riešenie problémov',
       body: 'Nedoručená zásielka znamená nahnevaného zákazníka aj potenciálne stratu objednávky. Neoship vám hneď ukáže, ktoré balíky sa nepodarilo doručiť, kde aktuálne sú a aký je dôvod. S jedným klikom môžete kontaktovať prepravcu priamo zo systému, požiadať o opätovné doručenie alebo dohodnúť výmenu doručovacej adresy.',
+      image: {
+        src: '/images/prehlad_o_balikoch_3.png',
+        alt: 'Prehľad nedoručených balíkov a rýchle riešenie problémov',
+      },
     },
     {
       h2: 'Vrátené balíky – kompletná správa vratiek',
       body: 'Vratky sú prirodzenou súčasťou e-commerce, ale ak ich nemáte pod kontrolou, môžu sa stať nákladnou nočnou morou. V Neoshipe vidíte všetky vrátené zásielky na jednom mieste vrátane dôvodu vrátenia, dátumu prevzatia a celkových nákladov spojených s vratkou. To vám umožňuje analyzovať dôvody vratiek a aktívne ich znižovať.',
+      image: {
+        src: '/images/prehlad_o_balikoch_4.png',
+        alt: 'Správa vrátených balíkov v Neoshipe',
+      },
     },
     {
       h2: 'Reklamované balíky a stratené zásielky',
       body: 'Pri reklamáciách rozhoduje rýchlosť. Neoship vám umožňuje označiť balík na reklamáciu priamo z prehľadu a zaznamenať komunikáciu s prepravcom. Vďaka centralizovanému evidovaniu máte presný prehľad o stave každej reklamácie a kompenzáciách od prepravcov.',
-    },
-    {
-      h2: 'Príplatkové služby pod kontrolou',
-      body: 'Sledujte zásielky s príplatkovými službami ako poistenie nad rámec, dobierka, doručenie do rúk vlastných, prelepenie či opätovné doručenie. Neoship eviduje, ktoré služby boli pri zásielke aktivované a koľko stáli.',
+      image: {
+        src: '/images/prehlad_o_balikoch_5.png',
+        alt: 'Evidencia reklamovaných balíkov a stratených zásielok',
+      },
     },
     {
       h2: 'Priebeh doručovania v reálnom čase',
       body: 'Status zásielky sa aktualizuje automaticky podľa dát od prepravcov. Vy aj váš zákazník vidíte rovnaké informácie v rovnakom čase – žiadne prekvapenia, žiadne nedorozumenia.',
+      image: {
+        src: '/images/prehlad_o_balikoch_7.png',
+        alt: 'Sledovanie priebehu doručovania v reálnom čase',
+      },
     },
   ],
   benefits: {
@@ -484,6 +513,10 @@ const prehladOFinanciach: FeaturePage = {
     {
       h2: 'Transparentné účtovanie každého balíka',
       body: 'Pri každej zásielke vidíte presný rozpad ceny – základná sadzba podľa hmotnosti a krajiny, príplatkové služby, poistenie, dobierka. Žiadne skryté poplatky, žiadne nepríjemné prekvapenia na konci mesiaca. Cenu balíka si môžete skontrolovať v reálnom čase priamo z prehľadu.',
+      image: {
+        src: '/images/prehlad_o_financiach_1.png',
+        alt: 'Transparentné účtovanie každého balíka v Neoshipe',
+      },
     },
     {
       h2: 'Detail ceny balíka – položku po položke',
@@ -495,22 +528,42 @@ const prehladOFinanciach: FeaturePage = {
         'Poistenie nad rámec štandardného krytia',
         'Vratky, ak balík nebol doručený a vrátil sa odosielateľovi',
       ],
+      image: {
+        src: '/images/prehlad_o_financiach_2.png',
+        alt: 'Detail ceny balíka rozdelený na jednotlivé položky',
+      },
     },
     {
       h2: 'Celkové náklady na expedíciu',
       body: 'Sumár za zvolené obdobie – deň, týždeň, mesiac, kvartál alebo vlastné rozpätie dátumov. Vidíte, koľko ste minuli celkovo, koľko priemerne na jeden balík, ako sa náklady vyvíjajú v čase a kde sú priestor na optimalizáciu.',
+      image: {
+        src: '/images/prehlad_o_financiach_3.png',
+        alt: 'Sumár celkových nákladov na expedíciu za zvolené obdobie',
+      },
     },
     {
       h2: 'Náklady na vratky – často zabúdaná, ale podstatná položka',
       body: 'Vratka stojí dvakrát – raz pôvodnú dopravu, druhýkrát spätnú prepravu. V Neoshipe máte tieto náklady oddelene evidované a viete presne, akú časť celkového rozpočtu vám vratky odčerpávajú. Tieto dáta vám pomáhajú znižovať pomer vratiek a optimalizovať popis produktov, fotky a logistiku.',
+      image: {
+        src: '/images/prehlad_o_financiach_4.png',
+        alt: 'Prehľad nákladov na vrátené zásielky',
+      },
     },
     {
       h2: 'Filtrovanie a exporty pre účtovníctvo',
       body: 'Náklady môžete filtrovať podľa prepravcu, krajiny, typu zásielky alebo časového obdobia. Všetky reporty exportujete do Excel, CSV, XML alebo SEPA XML a odovzdáte účtovníkovi alebo nahráte priamo do účtovného systému.',
+      image: {
+        src: '/images/prehlad_o_financiach_5.png',
+        alt: 'Filtrovanie a exporty nákladov pre účtovníctvo',
+      },
     },
     {
       h2: 'Porovnanie cien medzi prepravcami',
       body: 'Vyhodnocujte, ktorý prepravca vám reálne vychádza najlacnejšie pre daný typ zásielky. Niekedy je rozdiel medzi prepravcami pri ľahkých balíkoch zanedbateľný, ale pri ťažkých alebo medzinárodných zásielkach môže byť dramatický. S Neoshipom máte dáta na podloženie každého rozhodnutia.',
+      image: {
+        src: '/images/prehlad_o_financiach_6.png',
+        alt: 'Porovnanie cien medzi prepravcami v Neoshipe',
+      },
     },
   ],
   benefits: {
@@ -634,6 +687,10 @@ const parovanieDobierok: FeaturePage = {
     {
       h2: 'Dobierky všetkých prepravcov v jednom prehľade',
       body: 'Bez ohľadu na to, či dobierky inkasuje SPS, GLS, Packeta, DPD alebo Slovenská pošta, Neoship všetky platby agreguje a zobrazuje na jednej obrazovke. Vidíte, koľko peňazí vám prepravcovia dlhujú, kedy boli inkasované a kedy ich máte očakávať na účet.',
+      image: {
+        src: '/images/parovanie_dobierok_1.png',
+        alt: 'Prehľad dobierok všetkých prepravcov v jednom rozhraní Neoship',
+      },
     },
     {
       h2: 'Vyplatené dobierky – presne kedy a od koho',
@@ -645,14 +702,26 @@ const parovanieDobierok: FeaturePage = {
         'Variabilný symbol alebo referenciu transakcie',
         'Číslo balíka a meno zákazníka',
       ],
+      image: {
+        src: '/images/parovanie_dobierok_2.png',
+        alt: 'Detaily vyplatenej dobierky – dátumy, sumy a variabilné symboly',
+      },
     },
     {
       h2: 'Nevyplatené dobierky – plánovanie cashflow',
       body: 'Cashflow plánovanie je pre rastúci e-shop existenčná téma. Neoship vám presne ukáže, koľko peňazí vám prepravcovia ešte dlhujú, kedy môžete očakávať vyplatenie a aké sumy prídu v ktorom týždni. Vďaka tomu dokážete realisticky plánovať nákupy tovaru, marketingové kampane aj výplaty zamestnancom.',
+      image: {
+        src: '/images/parovanie_dobierok_3.png',
+        alt: 'Prehľad nevyplatených dobierok pre plánovanie cashflow',
+      },
     },
     {
       h2: 'Hromadné párovanie dobierok k faktúram',
       body: 'Najväčšia bolesť e-commerce účtovníctva – manuálne priradzovanie inkasovaných platieb k vystaveným faktúram – zmizne. Neoship dobierky páruje hromadne aj individuálne, podľa variabilného symbolu, čísla balíka alebo sumy. Účtovník dostane jednoduchú správu, ktoré faktúry sú uhradené, ktoré ešte čakajú.',
+      image: {
+        src: '/images/parovanie_dobierok_4.png',
+        alt: 'Hromadné párovanie dobierok k vystaveným faktúram',
+      },
     },
     {
       h2: 'Export do SEPA XML, Excel, CSV, XML',
@@ -663,10 +732,10 @@ const parovanieDobierok: FeaturePage = {
         'CSV – univerzálny formát pre import do iných systémov',
         'XML – pre individuálne automatizácie cez API',
       ],
-    },
-    {
-      h2: 'Filter a vyhľadávanie',
-      body: 'Hľadajte konkrétnu dobierku podľa čísla balíka, mena zákazníka, variabilného symbolu, sumy, prepravcu alebo dátumu. Výsledky aktualizujeme okamžite a vy nájdete každú jednu transakciu za sekundy.',
+      image: {
+        src: '/images/parovanie_dobierok_5.png',
+        alt: 'Export prehľadu dobierok do SEPA XML, Excel, CSV alebo XML',
+      },
     },
   ],
   benefits: {
@@ -785,6 +854,11 @@ const parovanieDobierok: FeaturePage = {
 const statistiky: FeaturePage = {
   slug: 'statistiky',
   breadcrumbLabel: 'Štatistiky',
+  textOnlySections: true,
+  leadImage: {
+    src: '/images/statistiky.png',
+    alt: 'Štatistiky expedície – dashboard Neoship',
+  },
   metadata: {
     title: 'Štatistiky expedície pre e-shop | Neoship',
     description:

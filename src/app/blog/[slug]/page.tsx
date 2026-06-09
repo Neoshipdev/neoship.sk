@@ -42,14 +42,20 @@ function parseBody(body: string): Block[] {
       continue;
     }
 
-    if (para.startsWith('## ')) {
-      blocks.push({ type: 'h2', text: para.slice(3).trim() });
-      continue;
+    // Osirelé hash znaky bez textu (## , ### , #### atď.) preskoč.
+    if (/^#{1,6}\s*$/.test(para)) continue;
+
+    // Markdown nadpisy: # / ## sa renderujú ako H2, ###+ ako H3.
+    const headingMatch = para.match(/^(#{1,6})\s+(.+)$/s);
+    if (headingMatch) {
+      const level = headingMatch[1].length;
+      const text = headingMatch[2].trim();
+      if (text) {
+        blocks.push({ type: level <= 2 ? 'h2' : 'h3', text });
+        continue;
+      }
     }
-    if (para.startsWith('### ')) {
-      blocks.push({ type: 'h3', text: para.slice(4).trim() });
-      continue;
-    }
+
     if (para.startsWith('> ')) {
       blocks.push({ type: 'quote', text: para.slice(2).trim() });
       continue;
@@ -83,11 +89,23 @@ export function generateMetadata({ params }: Props): Metadata {
   });
 }
 
+/** Vráti názov súboru z cesty obrázka (basename), bez query parametrov. */
+function imageBasename(src: string | undefined): string | undefined {
+  if (!src) return undefined;
+  const path = src.split('?')[0];
+  const idx = path.lastIndexOf('/');
+  return idx >= 0 ? path.slice(idx + 1) : path;
+}
+
 export default function Page({ params }: Props) {
   const post = getBlogPost(params.slug);
   if (!post) return notFound();
 
   const related = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+
+  // Inline obrázky, ktorých filename sa zhoduje s cover obrázkom, preskočíme,
+  // aby sa cover nezopakoval znova v tele článku.
+  const coverBasename = imageBasename(post.image);
 
   return (
     <>
@@ -151,7 +169,7 @@ export default function Page({ params }: Props) {
                 return (
                   <h2
                     key={i}
-                    className="mt-10 mb-4 text-2xl md:text-3xl font-black tracking-tight text-ink"
+                    className="mt-12 mb-5 text-3xl md:text-4xl font-black tracking-tight text-ink leading-tight relative pl-5 border-l-4 border-brand-orange"
                   >
                     {block.text}
                   </h2>
@@ -159,7 +177,10 @@ export default function Page({ params }: Props) {
               }
               if (block.type === 'h3') {
                 return (
-                  <h3 key={i} className="mt-8 mb-3 text-xl md:text-2xl font-bold text-ink">
+                  <h3
+                    key={i}
+                    className="mt-8 mb-3 text-xl md:text-2xl font-bold tracking-tight text-ink leading-snug"
+                  >
                     {block.text}
                   </h3>
                 );
@@ -186,6 +207,10 @@ export default function Page({ params }: Props) {
                 );
               }
               if (block.type === 'img') {
+                // Preskoč, ak je to ten istý obrázok ako cover (zhodný filename).
+                if (coverBasename && imageBasename(block.src) === coverBasename) {
+                  return null;
+                }
                 return (
                   <figure
                     key={i}

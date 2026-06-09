@@ -19,11 +19,45 @@ const visuals = [
 export function FeatureSection({
   section,
   index,
+  textOnly,
 }: {
   section: FeatureSectionContent;
   index: number;
+  textOnly?: boolean;
 }) {
   const hasLogos = section.logos && section.logos.length > 0;
+
+  // Full-width text-only layout (bez farebného číselného placeholderu vpravo).
+  // Použité keď je `textOnlySections` zapnuté na úrovni stránky (napr. /sluzby/statistiky).
+  if (textOnly && !hasLogos && !section.image) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.55 }}
+        className="max-w-4xl"
+      >
+        <p className="text-xs font-bold uppercase tracking-widest text-brand-orange mb-3">
+          {String(index + 1).padStart(2, '0')}
+        </p>
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-ink">{section.h2}</h2>
+        <p className="mt-4 body-lg">{section.body}</p>
+        {section.bullets && section.bullets.length > 0 && (
+          <ul className="mt-5 space-y-2.5">
+            {section.bullets.map((b) => (
+              <li key={b} className="flex items-start gap-3 text-ink">
+                <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-brand-orange-50 text-brand-orange flex items-center justify-center">
+                  <Check className="w-3 h-3" />
+                </span>
+                <span className="text-base leading-relaxed">{b}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </motion.div>
+    );
+  }
 
   // Full-width layout pre sekciu so zoznamom lôg (integrácie) – bez číslovania, väčšie logá
   if (hasLogos) {
@@ -106,19 +140,37 @@ export function FeatureSection({
         )}
       </div>
 
-      <div
-        className={cn(
-          'rounded-2xl aspect-[4/3] md:aspect-[5/4] flex items-center justify-center relative overflow-hidden',
-          visual,
-          reverse ? 'md:order-1' : '',
-        )}
-        aria-hidden
-      >
-        <div className="absolute inset-0 opacity-30 hatched-circle rounded-2xl" />
-        <span className="relative text-7xl md:text-8xl font-black text-white/90 select-none drop-shadow-sm">
-          {String(index + 1).padStart(2, '0')}
-        </span>
-      </div>
+      {section.image ? (
+        <div
+          className={cn(
+            'rounded-2xl aspect-[3/2] relative overflow-hidden border border-line bg-surface',
+            reverse ? 'md:order-1' : '',
+          )}
+        >
+          <Image
+            src={section.image.src}
+            alt={section.image.alt}
+            fill
+            unoptimized
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+            className="object-cover"
+          />
+        </div>
+      ) : (
+        <div
+          className={cn(
+            'rounded-2xl aspect-[4/3] md:aspect-[5/4] flex items-center justify-center relative overflow-hidden',
+            visual,
+            reverse ? 'md:order-1' : '',
+          )}
+          aria-hidden
+        >
+          <div className="absolute inset-0 opacity-30 hatched-circle rounded-2xl" />
+          <span className="relative text-7xl md:text-8xl font-black text-white/90 select-none drop-shadow-sm">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+        </div>
+      )}
     </motion.div>
   );
 }

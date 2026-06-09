@@ -102,7 +102,15 @@ export const navigation: NavItem[] = [
       { label: 'Pomocník', href: '/#zdroje', modal: 'helper' },
     ],
   },
-  { label: 'Blog', href: '/blog' },
+  {
+    label: 'Blog',
+    links: [
+      { label: 'Všetky príspevky', href: '/blog' },
+      { label: 'Články', href: '/blog?section=clanky' },
+      { label: 'Vzdelávačka', href: '/blog?section=vzdelavacka' },
+      { label: 'Case studies', href: '/blog?section=case-studies' },
+    ],
+  },
   {
     label: 'Spoločnosť',
     links: [

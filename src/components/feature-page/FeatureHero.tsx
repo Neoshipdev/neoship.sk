@@ -10,7 +10,7 @@ export function FeatureHero({ data }: { data: FeaturePage }) {
   const { open } = useModals();
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-brand-purple-50 via-white to-white pt-10 pb-20 md:pt-14 md:pb-28">
+    <section className="relative overflow-hidden bg-gradient-to-br from-brand-purple-50 via-white to-white pt-10 pb-8 md:pt-14 md:pb-12">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"

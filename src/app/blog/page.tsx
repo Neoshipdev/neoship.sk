@@ -7,7 +7,8 @@ import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
 import { PageHero } from '@/components/sections/PageHero';
 import { CTABanner } from '@/components/sections/CTABanner';
 import { buildMetadata } from '@/lib/seo';
-import { blogPostsSorted } from '@/lib/blog';
+import { BLOG_SECTIONS, blogPostsSorted, type BlogSection } from '@/lib/blog';
+import { cn } from '@/lib/cn';
 
 export const metadata: Metadata = buildMetadata({
   title: 'Blog | Neoship – tipy na expedíciu pre e-shopy',
@@ -17,20 +18,47 @@ export const metadata: Metadata = buildMetadata({
 });
 
 const PAGE_SIZE = 12;
+const VALID_SECTIONS = new Set<BlogSection>(BLOG_SECTIONS.map((s) => s.key));
 
 type Props = {
-  searchParams?: { page?: string };
+  searchParams?: { page?: string; section?: string };
 };
 
 export default function Page({ searchParams }: Props) {
-  const totalPages = Math.max(1, Math.ceil(blogPostsSorted.length / PAGE_SIZE));
+  const rawSection = searchParams?.section;
+  const activeSection: BlogSection | null =
+    rawSection && VALID_SECTIONS.has(rawSection as BlogSection)
+      ? (rawSection as BlogSection)
+      : null;
+
+  const filtered = activeSection
+    ? blogPostsSorted.filter((p) => p.section === activeSection)
+    : blogPostsSorted;
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const requested = Number.parseInt(searchParams?.page ?? '1', 10);
   const currentPage = Number.isFinite(requested)
     ? Math.min(Math.max(1, requested), totalPages)
     : 1;
   const start = (currentPage - 1) * PAGE_SIZE;
-  const visible = blogPostsSorted.slice(start, start + PAGE_SIZE);
-  const pageHref = (n: number) => (n === 1 ? '/blog' : `/blog?page=${n}`);
+  const visible = filtered.slice(start, start + PAGE_SIZE);
+
+  const sectionPrefix = activeSection ? `?section=${activeSection}` : '';
+  const pageHref = (n: number) => {
+    if (!activeSection) return n === 1 ? '/blog' : `/blog?page=${n}`;
+    return n === 1
+      ? `/blog?section=${activeSection}`
+      : `/blog?section=${activeSection}&page=${n}`;
+  };
+
+  // Count posts per section pre tab badges.
+  const countAll = blogPostsSorted.length;
+  const countBySection: Record<BlogSection, number> = {
+    clanky: 0,
+    vzdelavacka: 0,
+    'case-studies': 0,
+  };
+  for (const p of blogPostsSorted) countBySection[p.section]++;
 
   return (
     <>
@@ -44,6 +72,61 @@ export default function Page({ searchParams }: Props) {
 
       <section className="py-16 md:py-20 bg-white">
         <Container>
+          {/* Sekcie blogu – tab filter */}
+          <nav
+            aria-label="Sekcie blogu"
+            className="mb-10 flex flex-wrap items-center justify-center gap-2 sm:gap-3"
+          >
+            <Link
+              href="/blog"
+              aria-current={activeSection === null ? 'page' : undefined}
+              className={cn(
+                'inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-bold transition-colors',
+                activeSection === null
+                  ? 'bg-brand-orange border-brand-orange text-white shadow-soft'
+                  : 'bg-white border-line text-ink hover:border-brand-orange hover:text-brand-orange',
+              )}
+            >
+              Všetky
+              <span
+                className={cn(
+                  'inline-flex items-center justify-center rounded-full px-2 py-0.5 text-xs font-black',
+                  activeSection === null
+                    ? 'bg-white/20 text-white'
+                    : 'bg-brand-orange-50 text-brand-orange',
+                )}
+              >
+                {countAll}
+              </span>
+            </Link>
+            {BLOG_SECTIONS.map((s) => {
+              const active = activeSection === s.key;
+              return (
+                <Link
+                  key={s.key}
+                  href={`/blog?section=${s.key}`}
+                  aria-current={active ? 'page' : undefined}
+                  className={cn(
+                    'inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-bold transition-colors',
+                    active
+                      ? 'bg-brand-orange border-brand-orange text-white shadow-soft'
+                      : 'bg-white border-line text-ink hover:border-brand-orange hover:text-brand-orange',
+                  )}
+                >
+                  {s.label}
+                  <span
+                    className={cn(
+                      'inline-flex items-center justify-center rounded-full px-2 py-0.5 text-xs font-black',
+                      active ? 'bg-white/20 text-white' : 'bg-brand-orange-50 text-brand-orange',
+                    )}
+                  >
+                    {countBySection[s.key]}
+                  </span>
+                </Link>
+              );
+            })}
+          </nav>
+
           <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {visible.map((p) => (
               <li key={p.slug}>

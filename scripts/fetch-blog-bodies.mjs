@@ -139,13 +139,39 @@ function htmlToText(html, slugForImages) {
 
   // 2) Štandardné nahradenia
   s = s.replace(/<br\s*\/?>/gi, '\n');
-  s = s.replace(/<\/(p|h[1-6]|li|ul|ol|blockquote|div|figure)>/gi, '$&\n\n');
+
+  // 2a) Nadpisy a podnadpisy -> markdown prefixy (## / ###),
+  //     ktoré renderer v [slug]/page.tsx prevedie na <h2>/<h3>.
+  //     Vnútorné whitespace/newlines sploštíme – heading nikdy nesmie obsahovať
+  //     viacero riadkov, lebo by sa rozbil na osirelé `##` a samostatný text.
+  s = s.replace(/<h[12][^>]*>([\s\S]*?)<\/h[12]>/gi, (_, inner) => {
+    const clean = inner.replace(/<br\s*\/?>/gi, ' ').replace(/\s+/g, ' ').trim();
+    return clean ? `\n\n## ${clean}\n\n` : '';
+  });
+  s = s.replace(/<h[3-6][^>]*>([\s\S]*?)<\/h[3-6]>/gi, (_, inner) => {
+    const clean = inner.replace(/<br\s*\/?>/gi, ' ').replace(/\s+/g, ' ').trim();
+    return clean ? `\n\n### ${clean}\n\n` : '';
+  });
+
+  // 2b) "Bold-only" odseky: <p><strong>Nadpis</strong></p> -> ## Nadpis
+  //     Neoship.sk často používa <p><strong>...</strong></p> ako vizuálne nadpisy.
+  //     Limit na max 120 znakov vnútri, aby sme nepromovali bežné odseky s inline boldom.
+  s = s.replace(
+    /<p[^>]*>\s*<(strong|b)[^>]*>([^<]{4,120})<\/(strong|b)>\s*<\/p>/gi,
+    '\n\n## $2\n\n',
+  );
+
+  s = s.replace(/<\/(p|li|ul|ol|blockquote|div|figure)>/gi, '$&\n\n');
   s = s.replace(/<li[^>]*>/gi, '• ');
   // figure samostatne, aby obrázok ostal v samostatnom odseku
   s = s.replace(/<figure[^>]*>/gi, '\n\n');
 
-  // 3) Odstráň všetky zvyšné tagy
+  // 3) Odstráň všetky zvyšné tagy (vrátane <strong>, <em> apod. vnútri nadpisov)
   s = s.replace(/<[^>]+>/g, '');
+
+  // 3a) Po decodovaní môžu byť ## / ### s prebytočnými medzerami – upracme
+  s = s.replace(/^[ \t]*## +/gm, '## ');
+  s = s.replace(/^[ \t]*### +/gm, '### ');
 
   s = decode(s);
 
@@ -156,21 +182,23 @@ function htmlToText(html, slugForImages) {
   s = s.split('\n').map((line) => line.trim()).join('\n');
   s = s.replace(/\n{3,}/g, '\n\n').trim();
 
-  // 4) Stop / dropping patterns – odseky ktoré sa majú vyhodiť celé
+  // 4) Stop / dropping patterns – odseky ktoré sa majú vyhodiť celé.
+  //    Voliteľný `## ` / `### ` prefix akceptujeme (nadpisy CTA blokov).
+  const HEAD = /^(?:#{2,3}\s+)?/;
   const stopPatterns = [
-    /^Zdieľaj/i,
-    /^Sdílej/i,
-    /^Súvisiace/i,
-    /^Súvisiac[íé]/i,
-    /^Späť na/i,
-    /^Predošl[ýy] článok/i,
-    /^Ďalší článok/i,
-    /^Čítaj[\s\S]*?(min|čítania)/i,
-    /^Zaujímajú vás novinky/i,
-    /^Nechajte nám svoj email/i,
-    /^Prihlásiť sa\s*$/i,
-    /^Token\s*$/i,
-    /^Odoberať novinky/i,
+    new RegExp(HEAD.source + 'Zdieľaj', 'i'),
+    new RegExp(HEAD.source + 'Sdílej', 'i'),
+    new RegExp(HEAD.source + 'Súvisiace', 'i'),
+    new RegExp(HEAD.source + 'Súvisiac[íé]', 'i'),
+    new RegExp(HEAD.source + 'Späť na', 'i'),
+    new RegExp(HEAD.source + 'Predošl[ýy] článok', 'i'),
+    new RegExp(HEAD.source + 'Ďalší článok', 'i'),
+    new RegExp(HEAD.source + 'Čítaj[\\s\\S]*?(min|čítania)', 'i'),
+    new RegExp(HEAD.source + 'Zaujímajú vás novinky', 'i'),
+    new RegExp(HEAD.source + 'Nechajte nám svoj email', 'i'),
+    new RegExp(HEAD.source + 'Prihlásiť sa\\s*$', 'i'),
+    new RegExp(HEAD.source + 'Token\\s*$', 'i'),
+    new RegExp(HEAD.source + 'Odoberať novinky', 'i'),
   ];
 
   // 5) Spracuj odseky – placeholder na konkrétny obrázok

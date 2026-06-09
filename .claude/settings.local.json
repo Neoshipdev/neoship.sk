@@ -143,7 +143,18 @@
       "Bash(curl -sL \"https://www.chameleoon.sk/podporovane-zdroje/\")",
       "Bash(curl -sL -H \"Referer: https://ansystems.eu/\" -o ansystems.png \"https://ansystems.eu/wp-content/uploads/2020/05/Asset-22.png\")",
       "Bash(curl -sL -o /tmp/sap.svg \"https://www.vectorlogo.zone/logos/sap/sap-ar21.svg\")",
-      "Bash(curl -sL \"https://www.chameleoon.sk/podporovani-dopravcovia/\")"
+      "Bash(curl -sL \"https://www.chameleoon.sk/podporovani-dopravcovia/\")",
+      "Bash(node -e \"const b = require\\('./src/lib/blog.ts'.replace\\('.ts','.json'\\)\\); console.log\\(Object.keys\\(b\\).length\\)\")",
+      "Bash(node -e \"const b = require\\('./src/lib/blog-bodies.json'\\); const k = '11-vzdelavacka-s-neoshipom-preco-pohodlna-tlac-stitkov-je-len-cast-uspechu'; const lines = b[k].split\\('\\\\n'\\); const hdrs = lines.filter\\(l => l.startsWith\\('## '\\) || l.startsWith\\('### '\\)\\); console.log\\('Sample headings extracted from', k, ':'\\); hdrs.slice\\(0, 10\\).forEach\\(h => console.log\\('  ' + h\\)\\);\")",
+      "Bash(node -e \"const b = require\\('./src/lib/blog-bodies.json'\\); for \\(const slug of ['interview-s-luigi-s-box','co-ste-o-dobierkach-mozno-nevedeli','ebook-krok-za-krokom-k-spravnemu-expedicnemu-rieseniu']\\) { const h = b[slug].split\\('\\\\n'\\).filter\\(l => l.startsWith\\('## '\\) || l.startsWith\\('### '\\)\\); console.log\\(slug + ' :', h.length, 'headings'\\); h.forEach\\(x => console.log\\('  ' + x\\)\\); }\")",
+      "Bash(node -e ' *)",
+      "Bash(curl -s \"https://www.neoship.sk/clanky/11-vzdelavacka-s-neoshipom-preco-pohodlna-tlac-stitkov-je-len-cast-uspechu\")",
+      "Bash(awk '/blog-detail-content/,/<\\\\/article>/')",
+      "Bash(grep -oE '<\\(h[1-6]|strong|b\\)\\\\b[^>]*>[^<]{4,150}</\\(h[1-6]|strong|b\\)>')",
+      "Bash(awk '/col-lg-8 blog-detail-content/,/col-lg-4 blog-sidebar/')",
+      "Bash(grep -oE '<\\(h[1-6]|p|strong|b|em|li\\)[^>]*>[^<]{4,300}</\\(h[1-6]|p|strong|b|em|li\\)>')",
+      "Bash(awk '/<div[^>]*col-lg-8 blog-detail-content/,/<\\\\/article>/' /tmp/a11.html)",
+      "Bash(grep -oE '<\\(h[1-6]|p[^>]*><strong|p\\\\s+style\\)[^>]*>[^<]{4,150}')"
     ]
   }
 }
